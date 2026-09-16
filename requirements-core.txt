@@ -1,0 +1,11 @@
+# ============================================================
+# 语料验证工具集 · 核心要求（纯规则部分，轻量）
+# 安装：pip install -r requirements-core.txt
+# 用途：gate_validity / profile_length / profile_sentence / profile_vocab / report
+# 运行环境：Python 3.12+
+# ============================================================
+openpyxl>=3.1                 # 读回流 xlsx + 写报告（不依赖 pandas，控制体积）
+regex>=2024.11               # Unicode Block 属性字符检查（\p{Block=...}）
+langdetect==1.0.9             # 目标语言判定（seed=0 可复现，版本锁死）
+PyYAML>=6.0                   # 语言资源配置 lang/<code>.yaml
+numpy>=2.0                    # H_norm/Gini 等统计原语（stats 当前纯 Python 实现，备而不用）
