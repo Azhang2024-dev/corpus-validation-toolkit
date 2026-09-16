@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# 环境与密钥
+.env
+!.env.example
+
+# 输入 / 产出不入库
+input/
+output/
+
+# 系统杂项
+Thumbs.db
+.DS_Store
+~$*
