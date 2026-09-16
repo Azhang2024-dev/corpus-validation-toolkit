@@ -1,0 +1,36 @@
+# 斯瓦西里语（sw）语言资源 —— 口径与 2026-09-10 在线文档/实测脚本一致
+code: sw
+name: 斯瓦西里语
+langdetect_code: sw
+
+# 虚词/功能词表（初版 100 词：前缀系 + 常用功能词），虚词命中率 >= 阈值优先判斯语
+function_word_threshold: 0.15
+function_words: [na, wa, ya, za, kati, katika, kwa, kutoka, tangu, baada, kabla, lakini, au, tena, pia, basi, ni, si, hapana, ndio, ndiyo, kama, kwamba, ambayo, ambao, ambaye, ili, isipokuwa, mimi, wewe, yeye, sisi, ninyi, wao, yangu, yako, yake, yetu, yenu, yao, hii, huu, hizi, haya, yule, lile, kwake, kwetu, kwenu, kuna, hakuna, anaweza, ninaweza, tunaweza, unaweza, wanaweza, asante, karibu, tafadhali, samahani, habari, nzuri, mzuri, safi, sawa, leo, jana, kesho, sasa, hapa, pale, nje, ndani, juu, chini, kila, wote, baadhi, vinginevyo, hiyo, sababu, ame, ameha, ata, atakuwa, alikuwa, hana, neno, maneno, lugha, kiswahili, maana, inamaanisha, kueleza, unaendeleaje, niko, uko, tuko, sijambo, salama]
+
+# 斯语疑问词（句首判定）
+question_words: [je, nani, nini, lini, wapi, gani, ngapi, vipi, mbona, kwani]
+
+# NSW 非标词正则组（按句扫描，命中即标记；同一组还可当 TN 规则工作清单）
+nsw_patterns:
+  '纯数字': '\b\d+\b'
+  '时间/版本(数字分隔)': '\b\d+[:.]\d+\b'
+  '币种(KSh/TSh)': '\bKSh|TSh\b'
+  '号码(+254等)': '\+?\d[\d\s-]{7,}'
+  '全大写缩写': '\b[A-Z]{2,}\b'
+  '网址/邮件': 'https?://\S+|[\w.+-]+@[\w-]+\.\w+'
+
+# 字符检查：越界脚本分桶阈值（<pass_ratio pass，<warn_ratio warn，>=warn_ratio fail）
+charset:
+  pass_ratio: 0.05
+  warn_ratio: 0.20
+  foreign_blocks: [Arabic, Syriac, Thaana, NKo, CJK Unified Ideographs, CJK Unified Ideographs Extension A, CJK Symbols and Punctuation, Hiragana, Katakana, Katakana Phonetic Extensions, Cyrillic, Cyrillic Supplement, Hebrew, Arabic Supplement, Arabic Extended-A, Devanagari, Bengali, Gurmukhi, Gujarati, Oriya, Tamil, Telugu, Kannada, Malayalam, Sinhala, Thai, Lao, Tibetan, Myanmar, Khmer, Georgian, Armenian, Hangul Syllables, Hangul Jamo, Ethiopic, Greek and Coptic]
+
+# G2P 定稿管线：ipa-dict 查表（80.8%）→ epitran 兜底 → 补丁
+ipa_dict: ipa/sw.txt
+g2p:
+  fallback: epitran
+  epitran_lang: swa-Latn
+  patch: {}
+
+# 英语高频功能词（code-switch 近似，判外来用；真英语约 1.8% token）
+en_function_words: [the, a, an, of, to, in, is, are, was, were, be, been, being, and, or, but, for, nor, on, at, by, with, from, as, into, up, out, over, under, again, further, then, once, here, there, when, where, why, how, all, any, both, each, few, more, most, other, some, such, no, not, only, own, same, so, than, too, very, can, will, just, should, now, what, which, who, whom, this, that, these, those, it, its, i, you, he, she, we, they, them, my, your, his, her, our, their, me, him, us, about, after, because, before, between, during, through, above, below, off, down]
