@@ -1,0 +1,13 @@
+# ============================================================
+# G2P / 音素分布 · 可选依赖（最重的一块，按需安装）
+# 安装：pip install -r requirements-g2p.txt
+# 用途：profile_phoneme（单音素 / 双音素）
+# 说明：G2P 定稿 = ipa-dict 查表(80.8%) + epitran 兜底 + 补丁
+#       => 真正必装只有 epitran；phonemizer/transphone 是对照/备选。
+# 运行环境：Python 3.12+（transphone 部分另见下行注）
+# ============================================================
+epitran==1.24                 # swa-Latn 兜底转写（对照编辑距离 0.50 最优）
+setuptools>=68,<81             # epitran 1.24 依赖 pkg_resources；>=81 已移除，必须 <81
+# phonemizer==3.4.0           # 对照用（需 espeak-ng 后端，Windows 装便携版/espeakng-loader）
+# transphone==1.5.3           # 备选（拖 torch ≈290MB，仅零样本多语种需要时）
+# torch==2.13.0+cpu           # transphone 依赖（--index-url https://download.pytorch.org/whl/cpu）
