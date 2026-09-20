@@ -1,0 +1,103 @@
+# 印地语（hi）。音节 N/A：合体字+固有元音规则，首版不近似（报告披露）。
+code: hi
+name: 印地语
+langdetect_code: hi
+script: devanagari
+function_words:
+- है
+- हैं
+- हो
+- था
+- थी
+- थे
+- के
+- का
+- की
+- को
+- में
+- से
+- और
+- एक
+- यह
+- वह
+- ये
+- वे
+- नहीं
+- भी
+- तो
+- पर
+- कि
+- जो
+- क्यों
+- कब
+- कहाँ
+- कैसे
+- कौन
+- मैं
+- हम
+- आप
+- तुम
+- मुझे
+- हमें
+- अब
+- फिर
+- लेकिन
+- या
+- अगर
+- जब
+- तक
+- लिए
+- साथ
+- बाद
+- पहले
+- बहुत
+- सब
+- कुछ
+- धन्यवाद
+- नमस्ते
+question_words:
+- क्या
+- क्यों
+- कब
+- कहाँ
+- कैसे
+- कौन
+- कितना
+- कौनसा
+nsw_patterns:
+  纯数字(西/天城): \b\d+\b|\b[०-९]+\b
+  时间/版本(数字分隔): \b\d+[:.]\d+\b
+  币种/符号(INR): ₹|रुपये|INR
+  号码(+91等): \+?\d[\d\s-]{7,}
+  全大写缩写: \b[A-Z]{2,}\b
+  网址/邮件: https?://\S+|[\w.+-]+@[\w-]+\.\w+
+sentence_targets:
+  陈述:
+  - 0.7
+  - 0.8
+  短语:
+  - 0.05
+  - 0.15
+  疑问:
+  - 0.1
+  - 0.2
+  感叹:
+  - 0.1
+  - 0.2
+ipa_dict: ipa/hi.txt
+g2p:
+  fallback: epitran
+  epitran_lang: hin-Deva
+  patch: {}
+  audit_agreement_threshold: 0.95
+syllable:
+  method: na
+etymology:
+  prompt_name: 印地语(hi)
+  valid_origins:
+  - indo_aryan_native
+  - sanskrit_loan
+  - persian_arabic_loan
+  - english_loan
+  - other_loan
+  - uncertain
