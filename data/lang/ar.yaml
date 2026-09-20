@@ -1,0 +1,104 @@
+# 阿拉伯语（ar）。音节置 N/A：正字法系统性省略短元音，字符层算不准（报告披露）。
+# 变体：本批为 MSA/新闻体。RTL 方向。
+code: ar
+name: 阿拉伯语
+langdetect_code: ar
+script: arabic
+function_words:
+- في
+- من
+- إلى
+- على
+- عن
+- أن
+- إن
+- لا
+- ما
+- هذا
+- هذه
+- ذلك
+- التي
+- الذي
+- الذين
+- لم
+- لن
+- هل
+- كان
+- كانت
+- يكون
+- هو
+- هي
+- هم
+- هن
+- نحن
+- أنا
+- أنت
+- أنتم
+- كل
+- بعض
+- مع
+- بين
+- حتى
+- عند
+- بعد
+- قبل
+- أو
+- و
+- ثم
+- لكن
+- إذا
+- كما
+- حيث
+- قد
+- جدا
+- أيضا
+- فقط
+- نعم
+- شكرا
+- مرحبا
+question_words:
+- من
+- ماذا
+- متى
+- أين
+- كيف
+- لماذا
+- كم
+- هل
+- أي
+nsw_patterns:
+  纯数字(西/东阿拉伯): \b\d+\b|\b[٠-٩]+\b
+  时间/版本(数字分隔): \b\d+[:.]\d+\b|\b[٠-٩]+[:.][٠-٩]+\b
+  币种/符号(SAR/AED): ريال|درهم|SAR|AED
+  号码(+966等): \+?\d[\d\s-]{7,}
+  全大写缩写: \b[A-Z]{2,}\b
+  网址/邮件: https?://\S+|[\w.+-]+@[\w-]+\.\w+
+sentence_targets:
+  陈述:
+  - 0.7
+  - 0.8
+  短语:
+  - 0.05
+  - 0.15
+  疑问:
+  - 0.1
+  - 0.2
+  感叹:
+  - 0.1
+  - 0.2
+ipa_dict: ipa/ar.txt
+g2p:
+  fallback: epitran
+  epitran_lang: ara-Arab
+  patch: {}
+  audit_agreement_threshold: 0.95
+syllable:
+  method: na
+etymology:
+  prompt_name: 阿拉伯语(ar)
+  valid_origins:
+  - arabic_native
+  - english_loan
+  - french_loan
+  - other_loan
+  - uncertain
