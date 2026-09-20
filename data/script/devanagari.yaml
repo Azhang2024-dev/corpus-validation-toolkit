@@ -1,0 +1,27 @@
+# 天城字母族（hi / mr）。句末 danda । 与 ॥ 直接断句。
+name: 天城字母
+direction: ltr
+script_blocks:
+- Devanagari
+- Devanagari Extended
+- Vedic Extensions
+token_pattern: (?:(?=\p{scx=Deva})[\p{L}\p{M}])(?:[\p{L}\p{M}]|[‌‍])*
+core_pattern: '[\p{scx=Deva}\p{Nd}]'
+letter_pattern: (?=\p{scx=Deva})\p{L}
+word_pattern: ^[\p{L}\p{M}]+$
+sentence_enders: .!?…।॥
+enders_greedy: ।॥
+q_marks: '?'
+ex_marks: '!'
+quote_pairs:
+- '""'
+- ''''''
+- “”
+- ‘’
+keep_chars:
+- ‌
+- ‍
+phoneme_rules:
+  mode: generic
+length:
+  char_mode: graphemes
