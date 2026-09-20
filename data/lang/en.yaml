@@ -1,0 +1,144 @@
+# 英语（en）。音节按书写元音组近似（含 y）——英语拼写-发音不透明，报告口径块会披露。
+code: en
+name: 英语
+langdetect_code: en
+script: latin
+function_words:
+- the
+- a
+- an
+- and
+- or
+- but
+- if
+- of
+- to
+- in
+- 'on'
+- at
+- by
+- for
+- with
+- from
+- into
+- over
+- under
+- about
+- as
+- than
+- that
+- this
+- these
+- those
+- is
+- are
+- was
+- were
+- be
+- been
+- being
+- am
+- do
+- does
+- did
+- have
+- has
+- had
+- will
+- would
+- can
+- could
+- should
+- may
+- might
+- must
+- i
+- you
+- he
+- she
+- it
+- we
+- they
+- me
+- him
+- her
+- us
+- them
+- my
+- your
+- his
+- its
+- our
+- their
+- not
+- 'no'
+- 'yes'
+- so
+- very
+- just
+- also
+- too
+- only
+- more
+- most
+- some
+- any
+- all
+- each
+- every
+- how
+- when
+- where
+- what
+- which
+- who
+- whom
+- why
+question_words:
+- who
+- what
+- where
+- when
+- why
+- how
+- which
+- whose
+- whom
+nsw_patterns:
+  纯数字: \b\d+\b
+  时间/版本(数字分隔): \b\d+[:.]\d+\b
+  币种/符号(\$|£|USD|GBP): \$|£|USD|GBP
+  号码(+1等): \+?\d[\d\s-]{7,}
+  全大写缩写: \b[A-Z]{2,}\b
+  网址/邮件: https?://\S+|[\w.+-]+@[\w-]+\.\w+
+sentence_targets:
+  陈述:
+  - 0.7
+  - 0.8
+  短语:
+  - 0.05
+  - 0.15
+  疑问:
+  - 0.1
+  - 0.2
+  感叹:
+  - 0.1
+  - 0.2
+ipa_dict: ipa/en.txt
+g2p:
+  fallback: epitran
+  epitran_lang: eng-Latn
+  patch: {}
+  audit_agreement_threshold: 0.95
+syllable:
+  method: vowel_groups
+  vowel_letters: aeiouy
+etymology:
+  prompt_name: 英语(en)
+  valid_origins:
+  - germanic_native
+  - latin_loan
+  - greek_loan
+  - french_loan
+  - other_loan
+  - uncertain
