@@ -1,0 +1,114 @@
+# 中文（zh）。token = 单字 + 拉丁/数字串（无空格；报告能力块披露该口径）。
+# G2P 只查表（汉字→拼音→IPA 链路未内置）；音节 N/A。
+code: zh
+name: 中文
+langdetect_code: zh
+script: han
+function_words:
+- 的
+- 了
+- 是
+- 在
+- 和
+- 有
+- 我
+- 你
+- 您
+- 他
+- 她
+- 它
+- 我们
+- 你们
+- 他们
+- 这
+- 那
+- 不
+- 也
+- 还
+- 就
+- 都
+- 而
+- 与
+- 或
+- 但
+- 因为
+- 所以
+- 如果
+- 虽然
+- 但是
+- 可以
+- 已经
+- 正在
+- 会
+- 要
+- 能
+- 把
+- 被
+- 给
+- 对
+- 从
+- 向
+- 到
+- 于
+- 里
+- 上
+- 下
+- 中
+- 个
+- 些
+- 吗
+- 呢
+- 吧
+- 啊
+- 谢谢
+- 你好
+- 请
+question_words:
+- 什么
+- 为什么
+- 怎么
+- 哪
+- 哪里
+- 谁
+- 什么时候
+- 多少
+- 几
+- 吗
+- 呢
+nsw_patterns:
+  纯数字: \d+
+  时间/版本(数字分隔): \d+[:.]\d+
+  币种/符号(CNY): ¥|￥|元|人民币
+  号码(+86等): \+?\d[\d\s-]{7,}
+  全大写缩写: \b[A-Z]{2,}\b
+  网址/邮件: https?://\S+|[\w.+-]+@[\w-]+\.\w+
+sentence_targets:
+  陈述:
+  - 0.7
+  - 0.8
+  短语:
+  - 0.05
+  - 0.15
+  疑问:
+  - 0.1
+  - 0.2
+  感叹:
+  - 0.1
+  - 0.2
+ipa_dict: ipa/zh.txt
+g2p:
+  fallback: none
+  patch: {}
+syllable:
+  method: na
+etymology:
+  prompt_name: 中文(zh)
+  valid_origins:
+  - sinic_native
+  - sanskrit_loan
+  - english_loan
+  - japanese_loan
+  - other_loan
+  - uncertain
+langdetect_aliases:
+- zh-cn
