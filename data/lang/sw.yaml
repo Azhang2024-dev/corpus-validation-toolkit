@@ -1,36 +1,420 @@
-# 斯瓦西里语（sw）语言资源 —— 口径与 2026-09-10 在线文档/实测脚本一致
+# 斯瓦希里语（sw）语言资源 —— 口径与 2026-09-10 在线文档/实测脚本一致。
+# 多语种改造（2026-09-18）后本文件**显式 pin 全部历史口径**（token/核心字符/句末标点/切分规则），
+# 以保证 run_v3_full 等历史报告可逐项复现；新语言请参照 data/lang/fr.yaml 的薄配置写法。
 code: sw
-name: 斯瓦西里语
+name: 斯瓦希里语
 langdetect_code: sw
-
-# 虚词/功能词表（初版 100 词：前缀系 + 常用功能词），虚词命中率 >= 阈值优先判斯语
+script: latin
 function_word_threshold: 0.15
-function_words: [na, wa, ya, za, kati, katika, kwa, kutoka, tangu, baada, kabla, lakini, au, tena, pia, basi, ni, si, hapana, ndio, ndiyo, kama, kwamba, ambayo, ambao, ambaye, ili, isipokuwa, mimi, wewe, yeye, sisi, ninyi, wao, yangu, yako, yake, yetu, yenu, yao, hii, huu, hizi, haya, yule, lile, kwake, kwetu, kwenu, kuna, hakuna, anaweza, ninaweza, tunaweza, unaweza, wanaweza, asante, karibu, tafadhali, samahani, habari, nzuri, mzuri, safi, sawa, leo, jana, kesho, sasa, hapa, pale, nje, ndani, juu, chini, kila, wote, baadhi, vinginevyo, hiyo, sababu, ame, ameha, ata, atakuwa, alikuwa, hana, neno, maneno, lugha, kiswahili, maana, inamaanisha, kueleza, unaendeleaje, niko, uko, tuko, sijambo, salama]
-
-# 斯语疑问词（句首判定）
-question_words: [je, nani, nini, lini, wapi, gani, ngapi, vipi, mbona, kwani]
-
-# NSW 非标词正则组（按句扫描，命中即标记；同一组还可当 TN 规则工作清单）
+function_words:
+- na
+- wa
+- ya
+- za
+- kati
+- katika
+- kwa
+- kutoka
+- tangu
+- baada
+- kabla
+- lakini
+- au
+- tena
+- pia
+- basi
+- ni
+- si
+- hapana
+- ndio
+- ndiyo
+- kama
+- kwamba
+- ambayo
+- ambao
+- ambaye
+- ili
+- isipokuwa
+- mimi
+- wewe
+- yeye
+- sisi
+- ninyi
+- wao
+- yangu
+- yako
+- yake
+- yetu
+- yenu
+- yao
+- hii
+- huu
+- hizi
+- haya
+- yule
+- lile
+- kwake
+- kwetu
+- kwenu
+- kuna
+- hakuna
+- anaweza
+- ninaweza
+- tunaweza
+- unaweza
+- wanaweza
+- asante
+- karibu
+- tafadhali
+- samahani
+- habari
+- nzuri
+- mzuri
+- safi
+- sawa
+- leo
+- jana
+- kesho
+- sasa
+- hapa
+- pale
+- nje
+- ndani
+- juu
+- chini
+- kila
+- wote
+- baadhi
+- vinginevyo
+- hiyo
+- sababu
+- ame
+- ameha
+- ata
+- atakuwa
+- alikuwa
+- hana
+- neno
+- maneno
+- lugha
+- kiswahili
+- maana
+- inamaanisha
+- kueleza
+- unaendeleaje
+- niko
+- uko
+- tuko
+- sijambo
+- salama
+question_words:
+- je
+- nani
+- nini
+- lini
+- wapi
+- gani
+- ngapi
+- vipi
+- mbona
+- kwani
+sentence_targets:
+  陈述:
+  - 0.7
+  - 0.8
+  短语:
+  - 0.05
+  - 0.15
+  疑问:
+  - 0.1
+  - 0.2
+  感叹:
+  - 0.1
+  - 0.2
 nsw_patterns:
-  '纯数字': '\b\d+\b'
-  '时间/版本(数字分隔)': '\b\d+[:.]\d+\b'
-  '币种(KSh/TSh)': '\bKSh|TSh\b'
-  '号码(+254等)': '\+?\d[\d\s-]{7,}'
-  '全大写缩写': '\b[A-Z]{2,}\b'
-  '网址/邮件': 'https?://\S+|[\w.+-]+@[\w-]+\.\w+'
-
-# 字符检查：越界脚本分桶阈值（<pass_ratio pass，<warn_ratio warn，>=warn_ratio fail）
+  纯数字: \b\d+\b
+  时间/版本(数字分隔): \b\d+[:.]\d+\b
+  币种(KSh/TSh): \bKSh|TSh\b
+  号码(+254等): \+?\d[\d\s-]{7,}
+  全大写缩写: \b[A-Z]{2,}\b
+  网址/邮件: https?://\S+|[\w.+-]+@[\w-]+\.\w+
+token_pattern: '[A-Za-z''\-]+'
+core_pattern: '[A-Za-z\u00C0-\u024F\u1E00-\u1EFF0-9]'
+letter_pattern: '[a-z'']'
+word_pattern: ^[a-z']+$
+sentence_enders: .!?
+enders_greedy: ''
+q_marks: '?'
+ex_marks: '!'
+quote_pairs:
+- '""'
+- ''''''
+keep_chars: []
+phoneme_rules:
+  mode: sw_legacy
+vowel_letters: aeiou
+length:
+  char_mode: codepoints
 charset:
   pass_ratio: 0.05
-  warn_ratio: 0.20
-  foreign_blocks: [Arabic, Syriac, Thaana, NKo, CJK Unified Ideographs, CJK Unified Ideographs Extension A, CJK Symbols and Punctuation, Hiragana, Katakana, Katakana Phonetic Extensions, Cyrillic, Cyrillic Supplement, Hebrew, Arabic Supplement, Arabic Extended-A, Devanagari, Bengali, Gurmukhi, Gujarati, Oriya, Tamil, Telugu, Kannada, Malayalam, Sinhala, Thai, Lao, Tibetan, Myanmar, Khmer, Georgian, Armenian, Hangul Syllables, Hangul Jamo, Ethiopic, Greek and Coptic]
-
-# G2P 定稿管线：ipa-dict 查表（80.8%）→ epitran 兜底 → 补丁
+  warn_ratio: 0.2
+  foreign_blocks:
+  - Arabic
+  - Syriac
+  - Thaana
+  - NKo
+  - CJK Unified Ideographs
+  - CJK Unified Ideographs Extension A
+  - CJK Symbols and Punctuation
+  - Hiragana
+  - Katakana
+  - Katakana Phonetic Extensions
+  - Cyrillic
+  - Cyrillic Supplement
+  - Hebrew
+  - Arabic Supplement
+  - Arabic Extended-A
+  - Devanagari
+  - Bengali
+  - Gurmukhi
+  - Gujarati
+  - Oriya
+  - Tamil
+  - Telugu
+  - Kannada
+  - Malayalam
+  - Sinhala
+  - Thai
+  - Lao
+  - Tibetan
+  - Myanmar
+  - Khmer
+  - Georgian
+  - Armenian
+  - Hangul Syllables
+  - Hangul Jamo
+  - Ethiopic
+  - Greek and Coptic
+  letters_only: false
 ipa_dict: ipa/sw.txt
 g2p:
   fallback: epitran
   epitran_lang: swa-Latn
   patch: {}
-
-# 英语高频功能词（code-switch 近似，判外来用；真英语约 1.8% token）
-en_function_words: [the, a, an, of, to, in, is, are, was, were, be, been, being, and, or, but, for, nor, on, at, by, with, from, as, into, up, out, over, under, again, further, then, once, here, there, when, where, why, how, all, any, both, each, few, more, most, other, some, such, no, not, only, own, same, so, than, too, very, can, will, just, should, now, what, which, who, whom, this, that, these, those, it, its, i, you, he, she, we, they, them, my, your, his, her, our, their, me, him, us, about, after, because, before, between, during, through, above, below, off, down]
+  audit_agreement_threshold: 0.95
+  audit_fold:
+  - - n g
+    - ŋ g
+  - - m b
+    - m ɓ
+  - - n d
+    - n ɗ
+  - - m v
+    - m v
+  - - n z
+    - n z
+  - - n ɟ
+    - ɲ dʒ
+  - - t h
+    - θ
+syllable:
+  method: vowel_groups
+etymology:
+  prompt_name: 斯瓦希里语(sw)
+  valid_origins:
+  - bantu_native
+  - arabic_loan
+  - english_loan
+  - other_loan
+  - uncertain
+  candidate_hint: 可能的词源：bantu_native / arabic_loan / english_loan / other_loan / uncertain
+phonotactics:
+  vowels:
+  - a
+  - e
+  - i
+  - o
+  - u
+  consonants:
+  - p
+  - b
+  - t
+  - d
+  - k
+  - g
+  - f
+  - v
+  - s
+  - z
+  - h
+  - m
+  - n
+  - l
+  - w
+  - j
+  - ɾ
+  - tʃ
+  - ʃ
+  - ɲ
+  - ŋ
+  - ɓ
+  - ɗ
+  - ʄ
+  - ɠ
+  glides:
+  - w
+  - j
+  prenasal:
+    m:
+    - b
+    - p
+    - v
+    - f
+    - ɓ
+    - m
+    n:
+    - d
+    - t
+    - z
+    - s
+    - l
+    - ɾ
+    - n
+    - ɗ
+    - g
+    - k
+    - h
+    - j
+    - w
+    - ʃ
+    - tʃ
+    - ɲ
+  equivalences:
+    ɡ: g
+    r: ɾ
+  prenasal_decompose:
+    ᵐɓ:
+    - m
+    - ɓ
+    ⁿɗ:
+    - n
+    - ɗ
+    ᵐv:
+    - m
+    - v
+    ⁿz:
+    - n
+    - z
+    ᵐb:
+    - m
+    - b
+    ⁿd:
+    - n
+    - d
+    ᵑg:
+    - ŋ
+    - g
+    ᶮdʒ:
+    - ɲ
+    - dʒ
+en_function_words:
+- the
+- a
+- an
+- of
+- to
+- in
+- is
+- are
+- was
+- were
+- be
+- been
+- being
+- and
+- or
+- but
+- for
+- nor
+- true
+- at
+- by
+- with
+- from
+- as
+- into
+- up
+- out
+- over
+- under
+- again
+- further
+- then
+- once
+- here
+- there
+- when
+- where
+- why
+- how
+- all
+- any
+- both
+- each
+- few
+- more
+- most
+- other
+- some
+- such
+- false
+- not
+- only
+- own
+- same
+- so
+- than
+- too
+- very
+- can
+- will
+- just
+- should
+- now
+- what
+- which
+- who
+- whom
+- this
+- that
+- these
+- those
+- it
+- its
+- i
+- you
+- he
+- she
+- we
+- they
+- them
+- my
+- your
+- his
+- her
+- our
+- their
+- me
+- him
+- us
+- about
+- after
+- because
+- before
+- between
+- during
+- through
+- above
+- below
+- false
+- down
