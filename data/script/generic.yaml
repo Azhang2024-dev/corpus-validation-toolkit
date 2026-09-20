@@ -1,0 +1,21 @@
+# 兜底族 —— 未建家族的文字按 Unicode 属性近似（报告披露为「近似」）。
+name: 通用（Unicode 属性兜底）
+direction: ltr
+script_blocks: []
+token_pattern: '[\p{L}\p{M}][\p{L}\p{M}''’\-]*'
+core_pattern: '[\p{L}\p{Nd}]'
+letter_pattern: \p{L}
+word_pattern: ^[\p{L}\p{M}'’\-]+$
+sentence_enders: .!?…
+enders_greedy: ''
+q_marks: '?'
+ex_marks: '!'
+quote_pairs:
+- '""'
+- ''''''
+- “”
+vowel_letters: aeiou
+phoneme_rules:
+  mode: generic
+length:
+  char_mode: graphemes
