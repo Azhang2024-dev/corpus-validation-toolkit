@@ -393,6 +393,7 @@ class TestDedupModeSelection(unittest.TestCase):
             src.write_text("habari za leo\nhabari za leo\n", encoding="utf-8")
             r = subprocess.run(
                 [PY, str(ROOT / "scripts" / "prepare_input.py"),
+                 "--lang", "sw",
                  "--input", str(src), "--out-dir", str(Path(td) / "c"),
                  "--no-dedup", "--fuzzy"],
                 capture_output=True, text=True, encoding="utf-8")
@@ -474,6 +475,7 @@ class TestPrepareInputCLI(unittest.TestCase):
             src.write_text('"' + long_text + '"\n', encoding="utf-8")
             r = subprocess.run(
                 [PY, str(ROOT / "scripts" / "prepare_input.py"),
+                 "--lang", "sw",
                  "--input", str(src), "--out-dir", str(out)],
                 capture_output=True, text=True, encoding="utf-8")
             self.assertEqual(r.returncode, 0, msg=r.stdout + r.stderr)
@@ -495,6 +497,7 @@ class TestPrepareInputCLI(unittest.TestCase):
             src.write_text('"Habari za leo."\n"Pili ni nzuri."\n', encoding="utf-8")
             r = subprocess.run(
                 [PY, str(ROOT / "scripts" / "prepare_input.py"),
+                 "--lang", "sw",
                  "--input", str(src), "--format", "dump", "--out-dir", str(td / "c")],
                 capture_output=True, text=True, encoding="utf-8")
             self.assertEqual(r.returncode, 0, msg=r.stdout + r.stderr)
@@ -507,6 +510,7 @@ class TestPrepareInputCLI(unittest.TestCase):
             td = Path(td)
             r = subprocess.run(
                 [PY, str(ROOT / "scripts" / "prepare_input.py"),
+                 "--lang", "sw",
                  "--input", str(FIXTURE), "--out-dir", str(td / "c"), "--dry-run"],
                 capture_output=True, text=True, encoding="utf-8")
             self.assertEqual(r.returncode, 0, msg=r.stdout + r.stderr)
@@ -520,11 +524,13 @@ class TestPrepareInputCLI(unittest.TestCase):
             clean = td / "clean"
             subprocess.run(
                 [PY, str(ROOT / "scripts" / "prepare_input.py"),
+                 "--lang", "sw",
                  "--input", str(FIXTURE), "--out-dir", str(clean)],
                 capture_output=True, text=True, encoding="utf-8")
             run = td / "run"
             r = subprocess.run(
-                [PY, str(ROOT / "run_pipeline.py"), "--input", str(clean / "INPUT.txt"),
+                [PY, str(ROOT / "run_pipeline.py"),
+                 "--lang", "sw", "--input", str(clean / "INPUT.txt"),
                  "--meta", str(clean / "INPUT.meta.json"),
                  "--out", str(run), "--skip-g2p", "--skip-etymology"],
                 capture_output=True, text=True, encoding="utf-8")
@@ -552,6 +558,7 @@ class TestIngestXlsxSheet(unittest.TestCase):
             self._make_xlsx(xlsx)
             r = subprocess.run(
                 [PY, str(ROOT / "scripts" / "ingest_xlsx.py"),
+                 "--lang", "sw",
                  "--xlsx", str(xlsx), "--sheet", "NoSuchSheet", "--out-dir", str(td / "o")],
                 capture_output=True, text=True, encoding="utf-8")
             self.assertNotEqual(r.returncode, 0)
@@ -564,6 +571,7 @@ class TestIngestXlsxSheet(unittest.TestCase):
             self._make_xlsx(xlsx)
             r = subprocess.run(
                 [PY, str(ROOT / "scripts" / "ingest_xlsx.py"),
+                 "--lang", "sw",
                  "--xlsx", str(xlsx), "--out-dir", str(td / "o")],
                 capture_output=True, text=True, encoding="utf-8")
             self.assertEqual(r.returncode, 0, msg=r.stdout + r.stderr)
