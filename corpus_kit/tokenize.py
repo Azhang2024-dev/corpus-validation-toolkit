@@ -23,13 +23,17 @@ def _compile(pattern: str) -> re.Pattern:
 
 
 def word_tokens(text: str, pattern: str | None = None) -> list[str]:
-    """词法 token：小写、保留撇号与连字符（对齐 37.2 万 token / 2.48 万型符口径）。
+    """词法 token：小写、保留撇号与连字符。
 
-    pattern 为空 → 历史 sw 口径；非 sw 语言由 config 传入其脚本族正则
-    （如 `[\\p{scx=Deva}\\p{M}]+`），否则非拉丁语料 token 恒为 0。
+    pattern 必填：传 Config(lang).token_pattern（sw 为历史 [A-Za-z'-]+）。
+    不再在 pattern 缺失时静默回退到拉丁 TOKEN_RE（非拉丁会得到 0 token）。
+    需要 sw 历史口径时请显式传入 TOKEN_RE.pattern 或 Config("sw").token_pattern。
     """
     if not pattern:
-        return TOKEN_RE.findall(text.lower())
+        raise ValueError(
+            "word_tokens(pattern=...) is required; pass Config(lang).token_pattern "
+            "(Latin-only TOKEN_RE is not an implicit default)."
+        )
     return _compile(pattern).findall(text.lower())
 
 
