@@ -137,7 +137,7 @@ class TestSentenceWarning(unittest.TestCase):
     def _dims(self, texts, out):
         from corpus_kit.io import write_jsonl
         from corpus_kit.tokenize import word_tokens
-        sents = [{"sent_id": i + 1, "row_id": 1, "text": t, "tokens": word_tokens(t)}
+        sents = [{"sent_id": i + 1, "row_id": 1, "text": t, "tokens": word_tokens(t, r"[A-Za-z'\-]+")}
                  for i, t in enumerate(texts)]
         sp = Path(out) / "sentences.jsonl"
         write_jsonl(sp, sents)
