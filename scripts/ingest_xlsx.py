@@ -48,7 +48,7 @@ def main(argv=None):
     ap.add_argument("--sheet", default=None, help="工作表名（默认第一个；拼错会报错而非静默回退）")
     ap.add_argument("--text-col", default=DEFAULT_TEXT_COL, help="待验证文本列名")
     ap.add_argument("--out-dir", default="input", help="输出目录（默认 input/）")
-    ap.add_argument("--lang", default="sw")
+    ap.add_argument("--lang", required=True, help="language code or auto")
     args = ap.parse_args(argv)
 
     src = Path(args.xlsx)
