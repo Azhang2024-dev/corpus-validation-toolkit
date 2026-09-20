@@ -1,0 +1,138 @@
+# 西班牙语（es）。vowel_letters 含带重音元音（拼音法按书写元音）。
+code: es
+name: 西班牙语
+langdetect_code: es
+script: latin
+function_words:
+- de
+- del
+- a
+- al
+- el
+- la
+- los
+- las
+- un
+- una
+- unos
+- unas
+- y
+- o
+- u
+- pero
+- sino
+- que
+- quien
+- quienes
+- cual
+- cuales
+- como
+- cuando
+- donde
+- porque
+- si
+- 'no'
+- ni
+- se
+- me
+- te
+- le
+- les
+- nos
+- os
+- lo
+- mi
+- tu
+- su
+- mis
+- tus
+- sus
+- este
+- esta
+- estos
+- estas
+- ese
+- esa
+- esos
+- esas
+- aquel
+- es
+- son
+- era
+- fue
+- ser
+- estar
+- está
+- están
+- hay
+- tiene
+- tienen
+- para
+- por
+- con
+- sin
+- sobre
+- entre
+- hasta
+- desde
+- en
+- muy
+- más
+- menos
+- también
+- tampoco
+- ya
+- todavía
+- siempre
+- nunca
+- aquí
+- allí
+- hola
+- gracias
+question_words:
+- qué
+- quién
+- quiénes
+- cuál
+- cuáles
+- dónde
+- cuándo
+- cómo
+- cuánto
+nsw_patterns:
+  纯数字: \b\d+\b
+  时间/版本(数字分隔): \b\d+[:.]\d+\b
+  币种/符号(€|\$): €|\$
+  号码(+34等): \+?\d[\d\s-]{7,}
+  全大写缩写: \b[A-Z]{2,}\b
+  网址/邮件: https?://\S+|[\w.+-]+@[\w-]+\.\w+
+sentence_targets:
+  陈述:
+  - 0.7
+  - 0.8
+  短语:
+  - 0.05
+  - 0.15
+  疑问:
+  - 0.1
+  - 0.2
+  感叹:
+  - 0.1
+  - 0.2
+ipa_dict: ipa/es.txt
+g2p:
+  fallback: epitran
+  epitran_lang: spa-Latn
+  patch: {}
+  audit_agreement_threshold: 0.95
+syllable:
+  method: vowel_groups
+  vowel_letters: aeiouáéíóúü
+etymology:
+  prompt_name: 西班牙语(es)
+  valid_origins:
+  - latin_native
+  - arabic_loan
+  - english_loan
+  - other_loan
+  - uncertain
