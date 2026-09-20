@@ -45,7 +45,7 @@ def _to_num(v):
 def main(argv=None):
     ap = argparse.ArgumentParser(description="回流表 → INPUT.txt + meta（文本列默认 tts_text）")
     ap.add_argument("--xlsx", required=True, help="回流 xlsx 路径")
-    ap.add_argument("--sheet", default="Sheet1")
+    ap.add_argument("--sheet", default=None, help="工作表名（默认第一个；拼错会报错而非静默回退）")
     ap.add_argument("--text-col", default=DEFAULT_TEXT_COL, help="待验证文本列名")
     ap.add_argument("--out-dir", default="input", help="输出目录（默认 input/）")
     ap.add_argument("--lang", default="sw")
@@ -58,7 +58,14 @@ def main(argv=None):
     meta_path = out_dir / "INPUT.meta.json"
 
     wb = openpyxl.load_workbook(src, read_only=True, data_only=True)
-    ws = wb[args.sheet] if args.sheet in wb.sheetnames else wb[wb.sheetnames[0]]
+    # 未指定 --sheet 取第一个；指定了就必须存在——拼错时静默回退到第一个 sheet
+    # 会在同名列的情况下读错数据而不报错，故改为明确报错。
+    if args.sheet is None:
+        ws = wb[wb.sheetnames[0]]
+    elif args.sheet in wb.sheetnames:
+        ws = wb[args.sheet]
+    else:
+        raise SystemExit(f"工作表 {args.sheet!r} 不存在。可用的表：{wb.sheetnames}")
     rows = ws.iter_rows(values_only=True)
     header = [str(h) if h is not None else "" for h in next(rows)]
     headers = [h for h in header]
