@@ -1,0 +1,115 @@
+# 印尼语（id）。
+code: id
+name: 印尼语
+langdetect_code: id
+langdetect_aliases:
+- in
+script: latin
+function_words:
+- yang
+- dan
+- di
+- ke
+- dari
+- untuk
+- dengan
+- pada
+- dalam
+- ini
+- itu
+- atau
+- juga
+- tidak
+- bukan
+- sudah
+- belum
+- akan
+- adalah
+- ada
+- telah
+- saya
+- kamu
+- anda
+- dia
+- kami
+- kita
+- mereka
+- aku
+- nya
+- apa
+- siapa
+- mana
+- kapan
+- bagaimana
+- mengapa
+- berapa
+- karena
+- sebagai
+- tetapi
+- namun
+- jika
+- kalau
+- supaya
+- agar
+- oleh
+- sama
+- hanya
+- masih
+- lebih
+- paling
+- banyak
+- sedikit
+- semua
+- setiap
+- tersebut
+- bahwa
+- terima
+- kasih
+- selamat
+question_words:
+- apa
+- siapa
+- mana
+- kapan
+- bagaimana
+- mengapa
+- berapa
+nsw_patterns:
+  纯数字: \b\d+\b
+  时间/版本(数字分隔): \b\d+[:.]\d+\b
+  币种/符号(Rp): Rp
+  号码(+62等): \+?\d[\d\s-]{7,}
+  全大写缩写: \b[A-Z]{2,}\b
+  网址/邮件: https?://\S+|[\w.+-]+@[\w-]+\.\w+
+sentence_targets:
+  陈述:
+  - 0.7
+  - 0.8
+  短语:
+  - 0.05
+  - 0.15
+  疑问:
+  - 0.1
+  - 0.2
+  感叹:
+  - 0.1
+  - 0.2
+ipa_dict: ipa/id.txt
+g2p:
+  fallback: epitran
+  epitran_lang: ind-Latn
+  patch: {}
+  audit_agreement_threshold: 0.95
+syllable:
+  method: vowel_groups
+  vowel_letters: aeiou
+etymology:
+  prompt_name: 印尼语(id)
+  valid_origins:
+  - austronesian_native
+  - sanskrit_loan
+  - arabic_loan
+  - dutch_loan
+  - english_loan
+  - other_loan
+  - uncertain
