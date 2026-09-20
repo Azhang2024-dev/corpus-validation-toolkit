@@ -20,7 +20,7 @@ from corpus_kit.phonotactics import normalize_sequence, phonotactics_report
 def main(argv=None):
     ap = argparse.ArgumentParser(description="音素分布（G2P）")
     ap.add_argument("--sentences", required=True, help="sentences.jsonl")
-    ap.add_argument("--lang", default="sw")
+    ap.add_argument("--lang", required=True, help="language code or auto")
     ap.add_argument("--out", required=True)
     ap.add_argument("--limit", type=int, default=None, help="只音素化前 N 个句子（开发用）")
     ap.add_argument("--audit-n", type=int, default=200, help="G2P 一致性抽验样本数（0=跳过）")
