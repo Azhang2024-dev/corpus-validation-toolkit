@@ -299,12 +299,29 @@ class TestSwBaselinePinned(unittest.TestCase):
         self.assertFalse(getattr(c, "foreign_letters_only", True), "sw 应 pin 旧越界口径")
         self.assertEqual(c.syllable_method, "vowel_groups")
 
-def test_sw_split_phonemes_legacy(self):
+    def test_sw_split_phonemes_legacy(self):
         from corpus_kit.phonemes import split_phonemes
         c = Config("sw")
         # sw 历史口径：上标前鼻化 + 后随字符合并为**单音位**（ᵐɓ 不拆）
         self.assertEqual(split_phonemes("aᵐɓo", c), ["a", "ᵐɓ", "o"])
         self.assertEqual(split_phonemes("tʃaka", c), ["tʃ", "a", "k", "a"])
+
+
+
+class TestWordTokensRequirePattern(unittest.TestCase):
+    """bare word_tokens must not silently Latin-filter non-Latin text."""
+
+    def test_missing_pattern_raises(self):
+        with self.assertRaises(ValueError):
+            word_tokens("你好")
+        with self.assertRaises(ValueError):
+            word_tokens("नमस्ते")
+
+    def test_explicit_sw_still_latin(self):
+        self.assertEqual(
+            word_tokens("Habari za Leo!", Config("sw").token_pattern),
+            ["habari", "za", "leo"],
+        )
 
 
 if __name__ == "__main__":
