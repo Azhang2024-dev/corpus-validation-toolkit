@@ -1,0 +1,102 @@
+# 豪萨语（ha）。注意：langdetect 无 ha profile —— 语言判定完全依赖虚词表（报告能力块披露）。
+code: ha
+name: 豪萨语
+langdetect_code: ha
+script: latin
+function_words:
+- da
+- na
+- ya
+- ta
+- ba
+- ka
+- ga
+- mai
+- su
+- ne
+- ce
+- shi
+- ita
+- mu
+- ku
+- ni
+- ke
+- za
+- an
+- a
+- cikin
+- daga
+- kan
+- wajen
+- don
+- saboda
+- kuma
+- amma
+- ko
+- idan
+- yayin
+- yau
+- gobe
+- jiya
+- nan
+- can
+- kowa
+- kome
+- duka
+- wasu
+- wani
+- wata
+- babu
+- akwai
+- yana
+- tana
+- suna
+- muna
+- ina
+- sannu
+- gode
+question_words:
+- menene
+- wanene
+- ina
+- yaushe
+- yaya
+- nawa
+- wace
+nsw_patterns:
+  纯数字: \b\d+\b
+  时间/版本(数字分隔): \b\d+[:.]\d+\b
+  币种/符号(NGN|₦): NGN|₦
+  号码(+234等): \+?\d[\d\s-]{7,}
+  全大写缩写: \b[A-Z]{2,}\b
+  网址/邮件: https?://\S+|[\w.+-]+@[\w-]+\.\w+
+sentence_targets:
+  陈述:
+  - 0.7
+  - 0.8
+  短语:
+  - 0.05
+  - 0.15
+  疑问:
+  - 0.1
+  - 0.2
+  感叹:
+  - 0.1
+  - 0.2
+ipa_dict: ipa/ha.txt
+g2p:
+  fallback: epitran
+  epitran_lang: hau-Latn
+  patch: {}
+  audit_agreement_threshold: 0.95
+syllable:
+  method: vowel_groups
+  vowel_letters: aeiou
+etymology:
+  prompt_name: 豪萨语(ha)
+  valid_origins:
+  - chadic_native
+  - arabic_loan
+  - english_loan
+  - other_loan
+  - uncertain
