@@ -346,7 +346,7 @@ def verify(sents, cfg, batch_size) -> tuple[bool, dict]:
 def main(argv=None):
     ap = argparse.ArgumentParser(description="词源打标（LLM，全局词级去重）")
     ap.add_argument("--sentences", required=True)
-    ap.add_argument("--lang", default="sw")
+    ap.add_argument("--lang", required=True, help="language code or auto")
     ap.add_argument("--out", required=True)
     ap.add_argument("--limit", type=int, default=None, help="只取前 N 句（开发用）")
     ap.add_argument("--batch-size", type=int, default=None, help="每批词数（默认 LLM_BATCH_SIZE 或 30）")
