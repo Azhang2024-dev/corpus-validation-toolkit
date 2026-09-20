@@ -1,0 +1,91 @@
+# 孟加拉语（bn）—— 词典 WikiPron 达卡方言（与语料来源地区一致）；音节 N/A。
+code: bn
+name: 孟加拉语
+langdetect_code: bn
+script: bengali
+function_words:
+- এবং
+- ও
+- এই
+- সে
+- তার
+- থেকে
+- করে
+- জন্য
+- না
+- হয়
+- হবে
+- করা
+- করতে
+- করো
+- মধ্যে
+- একটি
+- একটা
+- আপনার
+- আমার
+- তোমার
+- আমি
+- আমরা
+- তুমি
+- আপনি
+- তিনি
+- তারা
+- কিন্তু
+- বা
+- যদি
+- খন
+- তবে
+- এখন
+- পরে
+- আগে
+- অনেক
+- সব
+- কিছু
+- ধন্যবাদ
+- নমস্কার
+question_words:
+- কি
+- কী
+- কেন
+- কখন
+- কোথায়
+- কীভাবে
+- কে
+- কত
+nsw_patterns:
+  纯数字(西/孟加拉): \b\d+\b|\b[০-৯]+\b
+  时间/版本(数字分隔): \b\d+[:.]\d+\b
+  币种/符号(BDT/৳): ৳|টাকা|BDT
+  号码(+880等): \+?\d[\d\s-]{7,}
+  全大写缩写: \b[A-Z]{2,}\b
+  网址/邮件: https?://\S+|[\w.+-]+@[\w-]+\.\w+
+sentence_targets:
+  陈述:
+  - 0.7
+  - 0.8
+  短语:
+  - 0.05
+  - 0.15
+  疑问:
+  - 0.1
+  - 0.2
+  感叹:
+  - 0.1
+  - 0.2
+ipa_dict: ipa/bn.txt
+g2p:
+  fallback: epitran
+  epitran_lang: ben-Beng
+  patch: {}
+  audit_agreement_threshold: 0.95
+syllable:
+  method: na
+etymology:
+  prompt_name: 孟加拉语(bn)
+  valid_origins:
+  - indo_aryan_native
+  - sanskrit_loan
+  - persian_arabic_loan
+  - english_loan
+  - other_loan
+  - uncertain
