@@ -1,0 +1,26 @@
+# 西里尔字母族（ru）。
+name: 西里尔字母
+direction: ltr
+script_blocks:
+- Cyrillic
+- Cyrillic Supplement
+- Cyrillic Extended-A
+- Cyrillic Extended-B
+token_pattern: (?:(?=\p{scx=Cyrl})[\p{L}\p{M}])(?:[\p{L}\p{M}]|['’\-])*
+core_pattern: '[\p{scx=Cyrl}\p{Nd}]'
+letter_pattern: (?=\p{scx=Cyrl})\p{L}
+word_pattern: ^[\p{L}\p{M}'’\-]+$
+sentence_enders: .!?…
+enders_greedy: ''
+q_marks: '?'
+ex_marks: '!'
+quote_pairs:
+- '""'
+- ''''''
+- «»
+- “”
+vowel_letters: аеёиоуыэюя
+phoneme_rules:
+  mode: generic
+length:
+  char_mode: graphemes
