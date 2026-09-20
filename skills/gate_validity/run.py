@@ -54,7 +54,7 @@ def main(argv=None):
     ap = argparse.ArgumentParser(description="合法性 gate")
     ap.add_argument("--input", required=True, help="INPUT.txt 路径")
     ap.add_argument("--meta", default=None, help="INPUT.meta.json 路径（保留原表字段）")
-    ap.add_argument("--lang", default="sw", help="语言码，或 auto（按数据检测）")
+    ap.add_argument("--lang", required=True, help="language code or auto")
     ap.add_argument("--out", required=True, help="output 运行目录")
     ap.add_argument("--limit", type=int, default=None, help="只处理前 N 行（开发用）")
     args = ap.parse_args(argv)
