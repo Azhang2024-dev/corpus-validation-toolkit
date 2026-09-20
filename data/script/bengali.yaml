@@ -1,0 +1,25 @@
+# 孟加拉字母族（bn）。
+name: 孟加拉字母
+direction: ltr
+script_blocks:
+- Bengali
+token_pattern: (?:(?=\p{scx=Beng})[\p{L}\p{M}])(?:[\p{L}\p{M}]|[‌‍])*
+core_pattern: '[\p{scx=Beng}\p{Nd}]'
+letter_pattern: (?=\p{scx=Beng})\p{L}
+word_pattern: ^[\p{L}\p{M}]+$
+sentence_enders: .!?…।॥
+enders_greedy: ।॥
+q_marks: '?'
+ex_marks: '!'
+quote_pairs:
+- '""'
+- ''''''
+- “”
+- ‘’
+keep_chars:
+- ‌
+- ‍
+phoneme_rules:
+  mode: generic
+length:
+  char_mode: graphemes
