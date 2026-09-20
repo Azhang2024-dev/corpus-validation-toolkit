@@ -135,9 +135,17 @@ def foreign_pattern(blocks: list | None = None, letters_only: bool = True):
 
 
 def core_pattern(pattern: str | None = None) -> re.Pattern:
-    """核心字符正则：无配置时保持历史 sw 口径（CORE_RE）。"""
+    """核心字符正则。
+
+    pattern 必填：传 Config(lang).core_pattern（sw 为历史 Latin CORE_RE 口径）。
+    不再在 pattern 缺失时静默回退到 Latin CORE_RE（非拉丁会误判 core_after）。
+    需要 sw 历史口径时请显式传入 CORE_RE.pattern 或 Config("sw").core_pattern。
+    """
     if not pattern:
-        return CORE_RE
+        raise ValueError(
+            "core_pattern(pattern=...) is required; pass Config(lang).core_pattern "
+            "(Latin-only CORE_RE is not an implicit default)."
+        )
     pat = _core_cache.get(pattern)
     if pat is None:
         pat = re.compile(pattern)
