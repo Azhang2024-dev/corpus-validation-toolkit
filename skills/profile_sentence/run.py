@@ -38,7 +38,7 @@ def classify(s: str, qwords: list[str], q_marks: str = "?", ex_marks: str = "!",
 def main(argv=None):
     ap = argparse.ArgumentParser(description="句式分布")
     ap.add_argument("--sentences", required=True, help="sentences.jsonl 路径")
-    ap.add_argument("--lang", default="sw")
+    ap.add_argument("--lang", required=True, help="language code or auto")
     ap.add_argument("--out", required=True)
     args = ap.parse_args(argv)
 
