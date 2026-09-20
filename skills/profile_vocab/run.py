@@ -21,7 +21,7 @@ def main(argv=None):
     ap = argparse.ArgumentParser(description="词汇分布")
     ap.add_argument("--records", required=True, help="records.jsonl")
     ap.add_argument("--sentences", required=True, help="sentences.jsonl")
-    ap.add_argument("--lang", default="sw")
+    ap.add_argument("--lang", required=True, help="language code or auto")
     ap.add_argument("--out", required=True)
     args = ap.parse_args(argv)
 
