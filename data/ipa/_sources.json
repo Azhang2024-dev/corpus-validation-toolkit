@@ -1,0 +1,202 @@
+{
+ "ar": {
+  "entries": 17563,
+  "fetched_at": "2026-09-18T16:00:20",
+  "kept": 14272,
+  "multi": 3291,
+  "note": "阿拉伯语（宽式）",
+  "remote": "ara_arab_broad",
+  "sha256": "2acf8855916cb85a5bf26000a83ed4cfe38beecb2e77a533bb99a60bd993d987",
+  "source": "WikiPron(Apache-2.0 code; data CC BY-SA via Wiktionary)"
+ },
+ "bn": {
+  "entries": 7277,
+  "fetched_at": "2026-09-18T16:00:22",
+  "kept": 6513,
+  "multi": 764,
+  "note": "孟加拉语（达卡方言，与语料来源地区一致）",
+  "remote": "ben_beng_dhaka_broad",
+  "sha256": "4a2269c02acfb206c48c9ed0e28eb9045e032205024d3f4c0c493920fb3b5cb7",
+  "source": "WikiPron(Apache-2.0 code; data CC BY-SA via Wiktionary)"
+ },
+ "en": {
+  "entries": 125927,
+  "fetched_at": "2026-09-18T15:58:54",
+  "kept": 125927,
+  "multi": 0,
+  "note": "英语（美式）",
+  "remote": "en_US",
+  "sha256": "a20b0131b6e98d30fc4f40bc3f82184fe40105ee4a87525a7fe417ef67420f78",
+  "source": "ipa-dict(MIT)"
+ },
+ "es": {
+  "entries": 595896,
+  "fetched_at": "2026-09-18T15:59:58",
+  "kept": 595896,
+  "multi": 0,
+  "note": "西班牙语（卡斯蒂利亚）",
+  "remote": "es_ES",
+  "sha256": "7e3f1f68f38c4f5cf34fdb25e8171d87835424ef0aac5bf1f6e6a79367d8bca0",
+  "source": "ipa-dict(MIT)"
+ },
+ "fil": {
+  "entries": 28295,
+  "fetched_at": "2026-09-18T16:00:54",
+  "kept": 25861,
+  "multi": 2434,
+  "note": "菲律宾语（**以塔加洛 tgl 代理**——WikiPron 无 fil 条目，口径限制已披露）",
+  "remote": "tgl_latn_broad",
+  "sha256": "b8231c6f8c9c75e5f6ce96b87ad7475c850a3b348dfadf16caff4b72dec9449b",
+  "source": "WikiPron(Apache-2.0 code; data CC BY-SA via Wiktionary)"
+ },
+ "fr": {
+  "entries": 245972,
+  "fetched_at": "2026-09-18T15:58:30",
+  "kept": 245972,
+  "multi": 0,
+  "note": "法语（法国）",
+  "remote": "fr_FR",
+  "sha256": "a01c786d384ad01732fcbfcde526f822447587d655f9b94699f00714dc499ab4",
+  "source": "ipa-dict(MIT)"
+ },
+ "fr_syll": {
+  "entries": 125653,
+  "fetched_at": "2026-09-18T16:06:56",
+  "kept": 125653,
+  "multi": 0,
+  "note": "法语音节数 nbsyll（词形→音节数）",
+  "remote": "Lexique383.tsv",
+  "sha256": "cc94926597ba5152468772ac62fa885cafdb652e3b539c8963360fc9aee41e97",
+  "source": "Lexique383(CC BY-SA 4.0)"
+ },
+ "gu": {
+  "entries": 4244,
+  "fetched_at": "2026-09-18T16:00:24",
+  "kept": 4086,
+  "multi": 158,
+  "note": "古吉拉特语（宽式）",
+  "remote": "guj_gujr_broad",
+  "sha256": "5d4e809c76a1d8d4507e65f169ec400cc22f68c51744f8cc8bd065ea510406b2",
+  "source": "WikiPron(Apache-2.0 code; data CC BY-SA via Wiktionary)"
+ },
+ "ha": {
+  "entries": 2176,
+  "fetched_at": "2026-09-18T16:00:25",
+  "kept": 1857,
+  "multi": 319,
+  "note": "豪萨语（宽式）",
+  "remote": "hau_latn_broad",
+  "sha256": "563c239b1cd6fcd80cc9bf3e3fa6caa88257ca6ecee619acb2a196108eb3a231",
+  "source": "WikiPron(Apache-2.0 code; data CC BY-SA via Wiktionary)"
+ },
+ "hi": {
+  "entries": 33057,
+  "fetched_at": "2026-09-18T16:00:28",
+  "kept": 30379,
+  "multi": 2678,
+  "note": "印地语（宽式）",
+  "remote": "hin_deva_broad",
+  "sha256": "4db742f9c573726c24eb75f1e48220c1aa2b32884d1168d47333756e237d13fb",
+  "source": "WikiPron(Apache-2.0 code; data CC BY-SA via Wiktionary)"
+ },
+ "id": {
+  "entries": 18590,
+  "fetched_at": "2026-09-18T16:00:30",
+  "kept": 17967,
+  "multi": 623,
+  "note": "印尼语（宽式）",
+  "remote": "ind_latn_broad",
+  "sha256": "6a58eb7cfd3c99c63c53e3f1c7d069aa3c388404bd1108fba500cb1bec599071",
+  "source": "WikiPron(Apache-2.0 code; data CC BY-SA via Wiktionary)"
+ },
+ "mr": {
+  "entries": 4872,
+  "fetched_at": "2026-09-18T16:00:31",
+  "kept": 4269,
+  "multi": 603,
+  "note": "马拉地语（宽式）",
+  "remote": "mar_deva_broad",
+  "sha256": "de8b85476633162d7359138052a7d989cbdfeadca3766e5254ca2a90febf5618",
+  "source": "WikiPron(Apache-2.0 code; data CC BY-SA via Wiktionary)"
+ },
+ "pt": {
+  "entries": 95933,
+  "fetched_at": "2026-09-18T16:00:10",
+  "kept": 95933,
+  "multi": 0,
+  "note": "葡萄牙语（巴西）",
+  "remote": "pt_BR",
+  "sha256": "939afb1b16c5f18bd8d2f1ae3ad033d8a1d0b716c11f016a7651b15c1d86de89",
+  "source": "ipa-dict(MIT)"
+ },
+ "ru": {
+  "entries": 466668,
+  "fetched_at": "2026-09-18T16:10:00",
+  "kept": 403873,
+  "multi": 62795,
+  "note": "俄语（**仅窄式**——WikiPron 无宽式，口径限制已披露）",
+  "remote": "rus_cyrl_narrow",
+  "sha256": "848fcbd531ec3326629256a35ca62b32451d2d9d0012ed32968d07b996b4c2fd",
+  "source": "WikiPron(Apache-2.0 code; data CC BY-SA via Wiktionary)"
+ },
+ "sw": {
+  "entries": 48308,
+  "fetched_at": "已入库（本次跳过）",
+  "kept": 48308,
+  "multi": 0,
+  "note": "斯瓦希里语（已入库，跳过）",
+  "remote": "sw",
+  "sha256": "621f27d7a5c987b2dac39b91d0848b833ad850bcaa39f6820a0fc2a46ad971f1",
+  "source": "ipa-dict"
+ },
+ "ta": {
+  "entries": 10492,
+  "fetched_at": "2026-09-18T16:00:42",
+  "kept": 10095,
+  "multi": 397,
+  "note": "泰米尔语（宽式）",
+  "remote": "tam_taml_broad",
+  "sha256": "682b5edae9a761aca9bc83318d09d1cdf0b3df2ceadde5a6dd70ed77f306bf76",
+  "source": "WikiPron(Apache-2.0 code; data CC BY-SA via Wiktionary)"
+ },
+ "te": {
+  "entries": 5117,
+  "fetched_at": "2026-09-18T16:00:44",
+  "kept": 5110,
+  "multi": 7,
+  "note": "泰卢固语（宽式；上游语料为空，备用）",
+  "remote": "tel_telu_broad",
+  "sha256": "50b0d576f105aba5eaedd3b399fa023661d0f91682453c255e4c7649276713d7",
+  "source": "WikiPron(Apache-2.0 code; data CC BY-SA via Wiktionary)"
+ },
+ "tr": {
+  "entries": 12321,
+  "fetched_at": "2026-09-18T16:00:47",
+  "kept": 11582,
+  "multi": 739,
+  "note": "土耳其语（宽式）",
+  "remote": "tur_latn_broad",
+  "sha256": "df7a89afe7bb81dbeca7f1d0c992ba6cd16ab8f4a4c28c0870d99b2a78e5a6b2",
+  "source": "WikiPron(Apache-2.0 code; data CC BY-SA via Wiktionary)"
+ },
+ "ur": {
+  "entries": 7709,
+  "fetched_at": "2026-09-18T16:00:50",
+  "kept": 6296,
+  "multi": 1413,
+  "note": "乌尔都语（宽式）",
+  "remote": "urd_arab_broad",
+  "sha256": "219a0d31ce5cd293e0fb1d0b1b88fe0e006ac62ccccd3d2b3fd4d45f695d32b6",
+  "source": "WikiPron(Apache-2.0 code; data CC BY-SA via Wiktionary)"
+ },
+ "zh": {
+  "entries": 44780,
+  "fetched_at": "2026-09-18T16:00:18",
+  "kept": 44780,
+  "multi": 0,
+  "note": "中文（简体；字/词级，覆盖有限）",
+  "remote": "zh_hans",
+  "sha256": "dcb25a4aad62be307f2ed699ce960ee0ebc158fe51ea26ddd033e34fbeeaa235",
+  "source": "ipa-dict(MIT)"
+ }
+}
