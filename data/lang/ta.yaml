@@ -1,0 +1,77 @@
+# 泰米尔语（ta）。音节 N/A（首版）。
+code: ta
+name: 泰米尔语
+langdetect_code: ta
+script: tamil
+function_words:
+- மற்றும்
+- ஒரு
+- இந்த
+- அந்த
+- ன்று
+- கும்
+- ள்ளது
+- இல்லை
+- வேண்டும்
+- நான்
+- நீங்கள்
+- அவர்
+- அவள்
+- அவர்கள்
+- ன
+- எனவே
+- ஆனால்
+- அல்லது
+- ன்றால்
+- இப்போது
+- பிறகு
+- முன்
+- மிக
+- எல்லா
+- சில
+- நன்றி
+- வணக்கம்
+question_words:
+- ன்ன
+- ஏன்
+- எப்போது
+- எங்கே
+- எப்படி
+- யார்
+- எத்தனை
+nsw_patterns:
+  纯数字(西/泰米尔): \b\d+\b|\b[௦-௯]+\b
+  时间/版本(数字分隔): \b\d+[:.]\d+\b
+  币种/符号(INR): ₹|ரூபாய்|INR
+  号码(+91等): \+?\d[\d\s-]{7,}
+  全大写缩写: \b[A-Z]{2,}\b
+  网址/邮件: https?://\S+|[\w.+-]+@[\w-]+\.\w+
+sentence_targets:
+  陈述:
+  - 0.7
+  - 0.8
+  短语:
+  - 0.05
+  - 0.15
+  疑问:
+  - 0.1
+  - 0.2
+  感叹:
+  - 0.1
+  - 0.2
+ipa_dict: ipa/ta.txt
+g2p:
+  fallback: epitran
+  epitran_lang: tam-Taml
+  patch: {}
+  audit_agreement_threshold: 0.95
+syllable:
+  method: na
+etymology:
+  prompt_name: 泰米尔语(ta)
+  valid_origins:
+  - dravidian_native
+  - sanskrit_loan
+  - english_loan
+  - other_loan
+  - uncertain
