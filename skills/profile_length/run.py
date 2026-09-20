@@ -57,7 +57,7 @@ def main(argv=None):
     ap = argparse.ArgumentParser(description="长度分布（含切句）")
     ap.add_argument("--records", required=True, help="records.jsonl 路径")
     ap.add_argument("--out", required=True)
-    ap.add_argument("--lang", default="sw")
+    ap.add_argument("--lang", required=True, help="language code or auto")
     ap.add_argument("--limit", type=int, default=None, help="只处理前 N 行（开发用）")
     args = ap.parse_args(argv)
 
