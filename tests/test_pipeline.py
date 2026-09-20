@@ -164,7 +164,8 @@ class TestEndToEnd(unittest.TestCase):
             fixture = ROOT / "tests" / "fixtures" / "sample_sw.txt"
             out = td / "run1"
             r = subprocess.run(
-                [PY, str(ROOT / "run_pipeline.py"), "--input", str(fixture),
+                [PY, str(ROOT / "run_pipeline.py"),
+                 "--lang", "sw", "--input", str(fixture),
                  "--out", str(out), "--skip-g2p", "--skip-etymology"],
                 capture_output=True, text=True, encoding="utf-8")
             self.assertEqual(r.returncode, 0, msg=r.stdout + r.stderr)
