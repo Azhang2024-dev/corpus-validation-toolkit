@@ -58,9 +58,9 @@ class TestSegment(unittest.TestCase):
 
 class TestTokenize(unittest.TestCase):
     def test_word_tokens(self):
-        self.assertEqual(word_tokens("Habari za Leo!"), ["habari", "za", "leo"])
-        self.assertEqual(word_tokens("mzuri sana, ndio."), ["mzuri", "sana", "ndio"])
-        self.assertEqual(word_tokens("ng'ombe wangu"), ["ng'ombe", "wangu"])  # 撇号/连字符留在词内
+        self.assertEqual(word_tokens("Habari za Leo!", r"[A-Za-z'\-]+"), ["habari", "za", "leo"])
+        self.assertEqual(word_tokens("mzuri sana, ndio.", r"[A-Za-z'\-]+"), ["mzuri", "sana", "ndio"])
+        self.assertEqual(word_tokens("ng'ombe wangu", r"[A-Za-z'\-]+"), ["ng'ombe", "wangu"])  # 撇号/连字符留在词内
 
     def test_whitespace(self):
         self.assertEqual(len(whitespace_words("a b c")), 3)
