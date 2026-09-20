@@ -1,0 +1,85 @@
+# 古吉拉特语（gu）。epitran 无 guj-Gujr map（实测约 128 个 map 中缺失）→ G2P 只查表无兜底，
+# 词典未命中的词无 IPA —— 报告能力块如实披露（epitran 是可选的，不阻塞全链）。
+code: gu
+name: 古吉拉特语
+langdetect_code: gu
+script: gujarati
+function_words:
+- છે
+- અને
+- માટે
+- આ
+- કે
+- એક
+- તે
+- પણ
+- કરી
+- પર
+- તો
+- નથી
+- તમે
+- જ
+- સાથે
+- હું
+- કરવા
+- શું
+- ો
+- હતા
+- શકે
+- માં
+- થી
+- ના
+- ની
+- નું
+- આમ
+- હવે
+- પછી
+- પહેલા
+- ઘણું
+- બધા
+- કંઈક
+- આભાર
+- નમસ્તે
+question_words:
+- ું
+- કેમ
+- ક્યારે
+- ક્યાં
+- કેવી
+- કોણ
+- કેલું
+nsw_patterns:
+  纯数字(西/古吉拉特): \b\d+\b|\b[૦-૯]+\b
+  时间/版本(数字分隔): \b\d+[:.]\d+\b
+  币种/符号(INR): ₹|INR
+  号码(+91等): \+?\d[\d\s-]{7,}
+  全大写缩写: \b[A-Z]{2,}\b
+  网址/邮件: https?://\S+|[\w.+-]+@[\w-]+\.\w+
+sentence_targets:
+  陈述:
+  - 0.7
+  - 0.8
+  短语:
+  - 0.05
+  - 0.15
+  疑问:
+  - 0.1
+  - 0.2
+  感叹:
+  - 0.1
+  - 0.2
+ipa_dict: ipa/gu.txt
+g2p:
+  fallback: none
+  patch: {}
+syllable:
+  method: na
+etymology:
+  prompt_name: 古吉拉特语(gu)
+  valid_origins:
+  - indo_aryan_native
+  - sanskrit_loan
+  - persian_arabic_loan
+  - english_loan
+  - other_loan
+  - uncertain
