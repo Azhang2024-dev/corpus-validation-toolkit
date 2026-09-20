@@ -1,0 +1,63 @@
+# 语料清洗阈值（语言无关）—— 业界口径来源见 docs/语料清洗步骤调研_v1.md
+#
+# 硬约束：本文件不得出现任何语言专有词表（stopword / 白名单 / 脏词表）。
+# 所有字符判定走 Unicode 属性（\p{L} / \p{Nd} / \p{Alpha} / \p{scx=…}），长度按字素簇 \X 计。
+# 阈值默认取业界常量（C4 / Gopher / CCNet / RefinedWeb / FineWeb / Dolma / NeMo Curator），
+# 可由 CLI 覆盖；不做「按语料自身分布自适应」为默认（那会让首版不可复现）。
+version: 1
+
+#  ① 记录边界重建（reconstruct）──────────────────────────────
+# 整段 dump：记录被引号包裹、内部引号双写转义、记录内换行原样保留、记录间无稳定分隔符。
+# 实测口径（TTS_TEXT_SWAHILI.txt）：csv.reader(quotechar, doublequote) 得 5038 条，
+# cell 用字段分隔符拼回后 5037/5038 与 canonical 逐字相同。
+reconstruct:
+  quotechar: '"'
+  doublequote: true
+  join_with: ','          # 单列 CSV：用分隔符拼回被误拆的 cell
+
+# ─ ② 文本归一（normalize）───────────────────────────────────
+# 说明：换行归一为 LF 是**恒定**行为（reconstruct.normalize_newlines），故不做开关。
+# 空白折叠是**恒定**行为（WS_RE 归一，TTS utterance 必须单行），故不做开关。
+normalize:
+  unicode_form: NFC       # 存储态用 NFC；NFD 只用于去重键（会剥变音符，不可写回正文）
+  strip_control: true     # 剥 \p{Cc} \p{Cf}（含零宽 ZWSP/ZWNJ/ZWJ、BOM、软连字符）
+  strip_noise: true       # 复用 charset.NOISE_RE（emoji/变体选择符/markdown 结构符）
+  unwrap_quotes: true     # 去整条包裹引号 + 双写引号还原
+  newline_to_space: true  # utterance 单行化；设 false 则保留记录内换行（句数口径会变）
+  max_repeat_run: 100     # 重复字符长串折叠（Dolma：重复序列 > 100 UTF-8 字符）
+
+# ── ③ 质检（quality）—— 全部按字素簇计，产出 flag（不必然删）──
+quality:
+  min_graphemes: 2        # 空 / 单字符
+  min_letters: 1          # 至少 1 个 \p{L}
+  max_nonalnum_ratio: 0.25    # NeMo NonAlphaNumericFilter
+  max_symbol_word_ratio: 0.1  # Gopher：# 与 … 的符号/词比
+  min_words_with_alpha: 0.8   # Gopher：≥80% 的词含字母（仅在词数 > 1 时判）
+  # 注：业界的「文档级」过滤（词数 50–100k、min sentences、段落去重、行标点比…）
+  # 在短句语料上退化，故本模块**不实现**，见 docs/语料清洗步骤调研_v1.md §3 DROP 清单。
+
+#  ④ 去重（dedup）──────────────────────────────────────────
+dedup:
+  exact: true             # 精确哈希（去重键归一后）
+  fuzzy: false            # 模糊近重（MinHash/LSH），默认关；CLI --fuzzy 可开
+  keep_policy: first      # first | last
+  # 去重键归一（datatrove simplify_text / CCNet normalize_for_dedup 系谱）
+  key:
+    casefold: true
+    digits_to_zero: true      # \p{Nd} → 0
+    strip_punct: true         # 去 \p{P}
+    strip_marks: false        # 去 \p{M}（变音符）—— 默认关：某些语言变音符有意义
+    collapse_whitespace: true
+  fuzzy_params:
+    n_grams: 5            # FineWeb：5-gram / 14 桶 × 8 哈希（Jaccard≈0.72）
+    num_buckets: 14
+    hashes_per_bucket: 8
+
+# ── ⑤ PII 标记（语言无关：邮件 / 链接）────────────────────────
+# 状态：**预留，未实现**（clean.py 尚无消费方）。留此注释是为避免误以为已生效。
+# 若启用，应只在报告里标记，不删行（与 gate「标记不下车」一致）。
+pii:
+  enabled: false
+  patterns:
+    email: '[\p{L}\p{N}._%+-]+@[\p{L}\p{N}.-]+\.\p{L}{2,}'
+    url: 'https?://\S+|www\.\S+'
