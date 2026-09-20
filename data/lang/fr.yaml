@@ -1,0 +1,147 @@
+# 法语（fr）—— 发音词典 ipa-dict fr_FR（MIT）；音节 Lexique383 真值（CC BY-SA）。
+# 虚词表：类型学闭类词（冠词/介词/代词/连词）+ 本批语料高频词交叉验证（de/la/le/les/des…）。
+code: fr
+name: 法语
+langdetect_code: fr
+script: latin
+function_words:
+- le
+- la
+- les
+- un
+- une
+- des
+- du
+- de
+- et
+- à
+- au
+- aux
+- en
+- dans
+- sur
+- sous
+- par
+- pour
+- avec
+- sans
+- que
+- qui
+- quoi
+- dont
+- où
+- quand
+- comment
+- pourquoi
+- je
+- tu
+- il
+- elle
+- 'on'
+- nous
+- vous
+- ils
+- elles
+- me
+- te
+- se
+- lui
+- leur
+- mon
+- ton
+- son
+- ma
+- ta
+- sa
+- mes
+- tes
+- ses
+- notre
+- votre
+- nos
+- vos
+- leurs
+- ce
+- cet
+- cette
+- ces
+- est
+- sont
+- être
+- avoir
+- ont
+- pas
+- ne
+- plus
+- moins
+- très
+- bien
+- tout
+- tous
+- toute
+- aussi
+- mais
+- ou
+- donc
+- ni
+- car
+- si
+- comme
+- déjà
+- encore
+- toujours
+- jamais
+- ici
+- là
+- oui
+- non
+- merci
+- bonjour
+question_words:
+- qui
+- que
+- quoi
+- où
+- quand
+- comment
+- pourquoi
+- combien
+- quel
+- quelle
+nsw_patterns:
+  纯数字: \b\d+\b
+  时间/版本(数字分隔): \b\d+[:.]\d+\b
+  币种/符号(€|\$|EUR|USD): €|\$|EUR|USD
+  号码(+33等): \+?\d[\d\s-]{7,}
+  全大写缩写: \b[A-Z]{2,}\b
+  网址/邮件: https?://\S+|[\w.+-]+@[\w-]+\.\w+
+sentence_targets:
+  陈述:
+  - 0.7
+  - 0.8
+  短语:
+  - 0.05
+  - 0.15
+  疑问:
+  - 0.1
+  - 0.2
+  感叹:
+  - 0.1
+  - 0.2
+ipa_dict: ipa/fr.txt
+g2p:
+  fallback: epitran
+  epitran_lang: fra-Latn
+  patch: {}
+  audit_agreement_threshold: 0.95
+syllable:
+  method: dict
+  dict: syll/fr.txt
+etymology:
+  prompt_name: 法语(fr)
+  valid_origins:
+  - latin_native
+  - greek_loan
+  - english_loan
+  - other_loan
+  - uncertain
