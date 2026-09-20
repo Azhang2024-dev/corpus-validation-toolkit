@@ -292,8 +292,10 @@ def build_capability_rows(cfg, gate: dict, length: dict, ph: dict, run_params: d
         rows.append(["虚词表", "已配置" if fw else "未配置——语言判定仅依赖 langdetect（短文本不稳）"])
     au = (ph or {}).get("g2p_audit") or {}
     if au:
-        rows.append(["G2P 抽验", f"{au.get('status')}"
-                     + (f"（折合一致率 {au.get('rate_folded')}）" if au.get("rate_folded") is not None else "")
+        rows.append(["G2P 抽验", f"{au.get('status_overall', au.get('status'))}"
+                     + (f"（折合 {au.get('rate_folded')}/{au.get('status_folded')}；"
+                        f"音素 {au.get('rate_phoneme')}/{au.get('status_phoneme')}）"
+                        if au.get("rate_folded") is not None else "")
                      + (f"；{au.get('note')}" if au.get("note") else "")])
     ptr = (ph or {}).get("phonotactics") or {}
     if ptr and ptr.get("n_space") == 0:
@@ -575,8 +577,11 @@ def build_report(outdir: Path, meta: dict, sentences: list[dict], records: list[
         ["完全一致率", pau.get("rate_exact")],
         ["音素序列一致率（归一后）", pau.get("rate_phoneme")],
         ["折合表示层差异后一致率", pau.get("rate_folded")],
-        ["阈值", pau.get("threshold")],
-        ["判定", pau.get("status")],
+        ["阈值(折合)", pau.get("threshold")],
+        ["阈值(音素)", pau.get("threshold_phoneme", pau.get("threshold"))],
+        ["判定-折合", pau.get("status_folded", pau.get("status"))],
+        ["判定-音素", pau.get("status_phoneme")],
+        ["判定-综合(取劣)", pau.get("status_overall", pau.get("status"))],
         ["仍不一致（真差异）数", pau.get("n_mismatch")],
     ])
     ws3.append([])
@@ -689,7 +694,11 @@ def build_report(outdir: Path, meta: dict, sentences: list[dict], records: list[
             "words_with_ipa": sum(1 for r_ in word_rows if r_["ipa"]),
             "words_with_origin": sum(1 for r_ in word_rows if r_["origin"]),
             "missing_combos": (ph.get("phonotactics") or {}).get("n_missing"),
-            "g2p_audit_status": (ph.get("g2p_audit") or {}).get("status"),
+            "g2p_audit_status": (ph.get("g2p_audit") or {}).get("status_overall", (ph.get("g2p_audit") or {}).get("status")),
+            "g2p_audit_status_folded": (ph.get("g2p_audit") or {}).get("status_folded"),
+            "g2p_audit_status_phoneme": (ph.get("g2p_audit") or {}).get("status_phoneme"),
+            "g2p_audit_rate_phoneme": (ph.get("g2p_audit") or {}).get("rate_phoneme"),
+            "g2p_audit_rate_folded": (ph.get("g2p_audit") or {}).get("rate_folded"),
             "sentence_status": (dims.get("sentence") or {}).get("status"),
             "degraded": bool(gate.get("degraded")),
             "degraded_reasons": list(gate.get("degraded_reasons") or []),
