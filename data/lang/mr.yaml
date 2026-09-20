@@ -1,0 +1,92 @@
+# 马拉地语（mr）。注意 langdetect 常把 mr 判成 hi —— 虚词表为主要判据（报告披露）。
+code: mr
+name: 马拉地语
+langdetect_code: mr
+script: devanagari
+function_words:
+- आहे
+- आहेत
+- आणि
+- या
+- एक
+- हे
+- हा
+- ही
+- होते
+- केली
+- यांनी
+- व
+- त्यांनी
+- असे
+- त्याने
+- केला
+- नाही
+- केले
+- मध्ये
+- पासून
+- साठी
+- वर
+- पण
+- किंवा
+- जर
+- जेव्हा
+- तर
+- मी
+- आम्ही
+- तुम्ही
+- त्याला
+- तिला
+- आता
+- नंतर
+- पहिले
+- खूप
+- सर्व
+- काही
+- धन्यवाद
+- नमस्कार
+question_words:
+- काय
+- का
+- कधी
+- कुे
+- कसे
+- कोण
+- किती
+- कोणता
+nsw_patterns:
+  纯数字(西/天城): \b\d+\b|\b[०-९]+\b
+  时间/版本(数字分隔): \b\d+[:.]\d+\b
+  币种/符号(INR): ₹|रुपये|INR
+  号码(+91等): \+?\d[\d\s-]{7,}
+  全大写缩写: \b[A-Z]{2,}\b
+  网址/邮件: https?://\S+|[\w.+-]+@[\w-]+\.\w+
+sentence_targets:
+  陈述:
+  - 0.7
+  - 0.8
+  短语:
+  - 0.05
+  - 0.15
+  疑问:
+  - 0.1
+  - 0.2
+  感叹:
+  - 0.1
+  - 0.2
+ipa_dict: ipa/mr.txt
+g2p:
+  fallback: epitran
+  epitran_lang: mar-Deva
+  patch: {}
+  audit_agreement_threshold: 0.95
+syllable:
+  method: na
+etymology:
+  prompt_name: 马拉地语(mr)
+  valid_origins:
+  - indo_aryan_native
+  - sanskrit_loan
+  - persian_arabic_loan
+  - english_loan
+  - other_loan
+  - uncertain
