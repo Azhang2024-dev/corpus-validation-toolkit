@@ -1,0 +1,30 @@
+# 汉字族（zh）。token = 单字 + 拉丁/数字串（无空格分词；报告披露）。
+name: 汉字
+direction: ltr
+script_blocks:
+- CJK Unified Ideographs
+- CJK Unified Ideographs Extension A
+- CJK Unified Ideographs Extension B
+- CJK Symbols and Punctuation
+- CJK Compatibility
+- Kangxi Radicals
+- CJK Radicals Supplement
+- Halfwidth and Fullwidth Forms
+token_pattern: (?:(?=\p{scx=Han})\p{L}|(?:(?=\p{scx=Latn})[\p{L}\p{M}0-9])+)
+core_pattern: '[\p{scx=Han}\p{Nd}]'
+letter_pattern: (?=\p{scx=Han})\p{L}
+word_pattern: ^[\p{scx=Han}]+$
+sentence_enders: .!?…。！？；
+enders_greedy: 。！？；
+q_marks: ?？
+ex_marks: '!！'
+quote_pairs:
+- '""'
+- ''''''
+- “”
+- 「」
+- 『』
+phoneme_rules:
+  mode: generic
+length:
+  char_mode: graphemes
