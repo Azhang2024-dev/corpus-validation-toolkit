@@ -1,0 +1,38 @@
+# 拉丁字母族（sw/fr/en/es/pt/id/tr/ha/fil 共享）。
+# token：本族字母起始，允许词内撇号/连字符（l'hôtel、peut-être）。
+name: 拉丁字母
+direction: ltr
+script_blocks:
+- Basic Latin
+- Latin-1 Supplement
+- Latin Extended-A
+- Latin Extended-B
+- Latin Extended Additional
+- Latin Extended-C
+- Latin Extended-D
+- Latin Extended-E
+- IPA Extensions
+- Phonetic Extensions
+- Phonetic Extensions Supplement
+- Spacing Modifier Letters
+- Modifier Tone Letters
+token_pattern: (?:(?=\p{scx=Latn})[\p{L}\p{M}])(?:[\p{L}\p{M}]|['’\-])*
+core_pattern: '[\p{scx=Latn}\p{Nd}]'
+letter_pattern: \p{scx=Latn}
+word_pattern: ^[\p{L}\p{M}'’\-]+$
+sentence_enders: .!?…
+enders_greedy: ''
+q_marks: '?'
+ex_marks: '!'
+quote_pairs:
+- '""'
+- ''''''
+- “”
+- ‘’
+- «»
+- ‹›
+vowel_letters: aeiou
+phoneme_rules:
+  mode: generic
+length:
+  char_mode: codepoints
