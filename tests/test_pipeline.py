@@ -34,7 +34,18 @@ class TestConfig(unittest.TestCase):
 class TestSegment(unittest.TestCase):
     def test_simple_split(self):
         s = split_sents("Habari za asubuhi! Leo ni siku nzuri.")
-        self.assertEqual(s, ["Habari za asubuhi!", " Leo ni siku nzuri."])  # 基准算法保留断点后前导空格
+        # 句级两侧空白都剥掉：断点后的前导空格不是内容，留着会让 n_chars 系统性 +1
+        self.assertEqual(s, ["Habari za asubuhi!", "Leo ni siku nzuri."])
+
+    def test_split_strips_leading_whitespace(self):
+        """回归：断点后的前导空格必须剥掉（P3-13）。
+
+        旧口径 rstrip 只去尾 → 每句 n_chars（len()）系统性 +1。
+        句数与断点位置不得因此改变。
+        """
+        s = split_sents("Habari za asubuhi!   Leo ni siku nzuri.\n\n  Pili.")
+        self.assertEqual(s, ["Habari za asubuhi!", "Leo ni siku nzuri.", "Pili."])
+        self.assertTrue(all(x == x.strip() for x in s))
 
     def test_decimal_not_split(self):
         s = split_sents("Bei ni 3.5% hapa.")
@@ -98,6 +109,20 @@ class TestG2P(unittest.TestCase):
         # 词形变化词可能查不到 → epitran 兜底（装了就出 IPA，没装返回 None）
         ipa = g.phonemize("tutakapokutana")
         self.assertTrue(ipa is None or len(ipa) > 0)
+
+    def test_has_letter_includes_hyphenated(self):
+        """回归：词形判定须含连字符词，否则 g2p 未覆盖率系统性偏低（P2-7）。
+
+        连字符词 `well-known`：isalpha()=False、WORD_RE 不匹配 → phonemize 返回 None，
+        旧判据（isalpha 或含撇号）会漏计它。has_letter 必须认为它是「需要 IPA 的词」。
+        """
+        from corpus_kit.g2p import has_letter
+        self.assertTrue(has_letter("well-known"))     # 连字符词
+        self.assertTrue(has_letter("ng'ombe"))        # 撇号词
+        self.assertTrue(has_letter("habari"))
+        self.assertFalse(has_letter("12345"))         # 纯数字
+        self.assertFalse(has_letter("!!!"))           # 纯符号
+        self.assertFalse(has_letter(""))
 
 
 class TestPhonemes(unittest.TestCase):
