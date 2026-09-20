@@ -41,7 +41,7 @@ def main(argv=None):
     ap = argparse.ArgumentParser(description="语料验证工具集 · 一键全流程")
     ap.add_argument("--input", required=True, help="INPUT.txt 路径")
     ap.add_argument("--meta", default=None, help="INPUT.meta.json 路径（可选）")
-    ap.add_argument("--lang", default="sw", help="语言码，或 auto（按数据检测；判不出会报错而非瞎猜）")
+    ap.add_argument("--lang", required=True, help="language code or auto")
     ap.add_argument("--out", default=None, help="output 运行目录（默认 output/run_<ts>）")
     ap.add_argument("--skip-g2p", action="store_true", help="跳过音素（G2P）stage")
     ap.add_argument("--skip-etymology", action="store_true", help="跳过词源（LLM）stage")
@@ -66,7 +66,11 @@ def main(argv=None):
     if lang == "auto":
         g = outdir / "dims" / "gate.json"
         if g.exists():
-            lang = json.loads(g.read_text(encoding="utf-8-sig")).get("lang") or "sw"
+            lang = json.loads(g.read_text(encoding="utf-8-sig")).get("lang")
+            if not lang:
+                raise SystemExit(
+                    "gate.json missing lang after --lang auto; pass --lang explicitly"
+                )
     run([py, str(SKILLS / "profile_length" / "run.py"), "--records", str(outdir / "records.jsonl"),
          "--lang", lang, "--out", str(outdir), *limit_arg], "profile_length (切句+长度)")
     run([py, str(SKILLS / "profile_sentence" / "run.py"), "--sentences", str(outdir / "sentences.jsonl"),
