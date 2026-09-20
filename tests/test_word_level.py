@@ -121,7 +121,7 @@ class TestEtymologyVerify(unittest.TestCase):
             for s in split_sents(r):
                 if s:
                     sid += 1
-                    sents.append({"sent_id": sid, "row_id": 1, "text": s, "tokens": word_tokens(s)})
+                    sents.append({"sent_id": sid, "row_id": 1, "text": s, "tokens": word_tokens(s, r"[A-Za-z'\-]+")})
         ok, verdict = ety.verify(sents, CFG, batch_size=8)
         self.assertTrue(ok, msg=str(verdict))
         self.assertEqual(verdict["verify"], "pass")
@@ -138,7 +138,7 @@ class TestEtymologyVerify(unittest.TestCase):
                 from corpus_kit.segment import split_sents
                 for s in split_sents(r):
                     sid += 1
-                    sents.append({"sent_id": sid, "row_id": 1, "text": s, "tokens": word_tokens(s)})
+                    sents.append({"sent_id": sid, "row_id": 1, "text": s, "tokens": word_tokens(s, r"[A-Za-z'\-]+")})
             sents_path.write_text("\n".join(json.dumps(s, ensure_ascii=False) for s in sents) + "\n", encoding="utf-8")
             r = subprocess.run(
                 [PY, str(ROOT / "skills" / "etymology_llm" / "run.py"),
