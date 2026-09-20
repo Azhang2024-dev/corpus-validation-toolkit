@@ -178,6 +178,7 @@ class TestReportSheets(unittest.TestCase):
             out = Path(td) / "run"
             r = subprocess.run(
                 [PY, str(ROOT / "run_pipeline.py"),
+                 "--lang", "sw",
                  "--input", str(ROOT / "tests" / "fixtures" / "sample_sw.txt"),
                  "--out", str(out), "--skip-etymology", "--limit", "8"],
                 capture_output=True, text=True, encoding="utf-8")
@@ -200,6 +201,7 @@ class TestReportSheets(unittest.TestCase):
             out = Path(td) / "run"
             r = subprocess.run(
                 [PY, str(ROOT / "run_pipeline.py"),
+                 "--lang", "sw",
                  "--input", str(ROOT / "tests" / "fixtures" / "sample_sw.txt"),
                  "--out", str(out), "--skip-etymology", "--skip-g2p", "--limit", "6"],
                 capture_output=True, text=True, encoding="utf-8")
@@ -217,6 +219,7 @@ class TestReportSheets(unittest.TestCase):
             out = Path(td) / "run"
             r = subprocess.run(
                 [PY, str(ROOT / "run_pipeline.py"),
+                 "--lang", "sw",
                  "--input", str(ROOT / "tests" / "fixtures" / "sample_sw.txt"),
                  "--out", str(out), "--skip-etymology", "--limit", "8"],
                 capture_output=True, text=True, encoding="utf-8")
