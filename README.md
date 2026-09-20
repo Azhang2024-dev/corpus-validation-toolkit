@@ -2,7 +2,7 @@
 
 TTS 回流语料「准入 gate + 维度画像 + 报告」工具集：斯瓦西里语（sw）先行，多语种可扩展。
 形态：**一个共享核心库 corpus_kit + 可编排 skills（薄壳）**，可被 agent 按需调用，也可命令行一键跑通。
-GitLab：<internal-gitlab/corpus-validation-toolkit>
+本仓库为可移植 tip 快照；clone 本仓库即可使用。
 
 ## 它解决什么
 回流数据不能直接用：先过「合法性 gate」（语言 + 字符），再做长度/句式/词汇/音素/词源维度画像，
@@ -13,7 +13,7 @@ GitLab：<internal-gitlab/corpus-validation-toolkit>
 1) **先把仓库 clone 到本机**（安装脚本要在这里跑；示例目录可自行替换）：
 
 ```powershell
-git clone internal-gitlab/corpus-validation-toolkit.git "$HOME\src\corpus-validation-toolkit"
+git clone <this-repo-url> "$HOME\src\corpus-validation-toolkit"
 cd "$HOME\src\corpus-validation-toolkit"
 ```
 
