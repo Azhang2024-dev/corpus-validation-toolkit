@@ -10,7 +10,7 @@ G2P 管线是「ipa-dict 查表 → epitran 兜底 → 补丁」。查表路径�
   · rate_exact    ：字符串完全相同
   · rate_phoneme  ：归一（异写 g/ɡ、r/ɾ + 前鼻化拆分）后音素序列相同
   · rate_folded   ：再把**表示层约定差异**折合后相同（词典 `ŋg`/`ᵐɓ` vs epitran `ng`/`mb`）
-判定用 rate_folded；三档都报，便于看清差异到底来自约定还是算法。阈值 0.95（框架口径）。
+判定同时要求 rate_folded 与 rate_phoneme 过线（双门）；再报 status_folded / status_phoneme / status（overall=worst），避免只靠折合率“漂绿”。阈值默认 0.95。
 """
 from __future__ import annotations
 
@@ -67,10 +67,14 @@ def audit(g2p, ipa_dict: dict, cfg, n: int = 200, seed: int = 0, fold: bool = Tr
     """抽 n 个词典命中词，比 epitran 与词典（三档口径）。"""
     words = sorted(w for w in ipa_dict if w and len(w) > 1)
     if not words:
-        return {"n_sample": 0, "rate_folded": 0.0, "status": "no_dict", "mismatches": [],
+        return {"n_sample": 0, "rate_folded": 0.0, "rate_phoneme": 0.0,
+                "status": "no_dict", "status_folded": "no_dict", "status_phoneme": "no_dict",
+                "status_overall": "no_dict", "mismatches": [],
                 "note": "无发音词典或词典为空：无法抽验"}
     if not getattr(g2p, "use_epitran", False) or not getattr(cfg, "epitran_lang", None):
-        return {"n_sample": 0, "rate_folded": 0.0, "status": "no_fallback", "mismatches": [],
+        return {"n_sample": 0, "rate_folded": 0.0, "rate_phoneme": 0.0,
+                "status": "no_fallback", "status_folded": "no_fallback", "status_phoneme": "no_fallback",
+                "status_overall": "no_fallback", "mismatches": [],
                 "note": "未配置 G2P 兜底（epitran_lang 缺失或 fallback=none）：无对照对象，抽验不适用"}
     rng = random.Random(seed)
     sample = rng.sample(words, min(n, len(words)))
@@ -98,7 +102,13 @@ def audit(g2p, ipa_dict: dict, cfg, n: int = 200, seed: int = 0, fold: bool = Tr
     rate_p = round(phonemic / ns, 4) if ns else 0.0
     rate_e = round(exact / ns, 4) if ns else 0.0
     rate_f = round(folded / ns, 4) if ns else 0.0
-    thr = float((cfg.get("g2p", {}) or {}).get("audit_agreement_threshold", 0.95))
+    g2p_cfg = cfg.get("g2p", {}) or {}
+    thr = float(g2p_cfg.get("audit_agreement_threshold", 0.95))
+    thr_phoneme = float(g2p_cfg.get("audit_phoneme_threshold", thr))
+    status_folded = "pass" if rate_f >= thr else "warn"
+    status_phoneme = "pass" if rate_p >= thr_phoneme else "warn"
+    # overall = worst of the two gates (warn beats pass; no_dict etc. already returned)
+    status_overall = "pass" if (status_folded == "pass" and status_phoneme == "pass") else "warn"
     return {
         "n_sample": ns,
         "n_match_exact": exact,
@@ -108,7 +118,12 @@ def audit(g2p, ipa_dict: dict, cfg, n: int = 200, seed: int = 0, fold: bool = Tr
         "rate_phoneme": rate_p,
         "rate_folded": rate_f,
         "threshold": thr,
-        "status": "pass" if rate_f >= thr else "warn",
+        "threshold_phoneme": thr_phoneme,
+        "status_folded": status_folded,
+        "status_phoneme": status_phoneme,
+        "status_overall": status_overall,
+        # Back-compat: status == overall (cannot greenwash on fold alone)
+        "status": status_overall,
         "n_mismatch": len(mismatches),
         "mismatches": mismatches,
     }
