@@ -110,19 +110,67 @@ class TestG2PAudit(unittest.TestCase):
         self.assertEqual(a, b)
 
     def test_audit_real_data_folds_to_pass(self):
+        """Honesty after narrowing audit_fold: dual-gate, no fold-only greenwash.
+
+        Notation-only fold (n g ↔ ŋ g) may still lift rate_folded above
+        rate_phoneme, but phonemic contrasts (implosives etc.) must remain
+        visible in rate_phoneme. Overall status is the worse of the two gates.
+        """
         g = G2P(CFG)
         d = load_ipa_dict(CFG.ipa_dict_path)
         r = audit(g, d, CFG, n=100, seed=0)
         self.assertEqual(r["n_sample"], 100)
-        # 折合后应显著高于原始（词典 ŋg/ᵐɓ vs epitran ng/mb 的约定差异）
-        self.assertGreater(r["rate_folded"], r["rate_phoneme"])
-        self.assertGreaterEqual(r["rate_folded"], 0.95)
-        self.assertEqual(r["status"], "pass")
+        # Dual-gate fields always present
+        for key in ("status_folded", "status_phoneme", "status_overall", "status"):
+            self.assertIn(key, r)
+            self.assertIn(r[key], {"pass", "warn"})
+        # status mirrors overall (cannot greenwash on fold alone)
+        self.assertEqual(r["status"], r["status_overall"])
+        expected_overall = (
+            "pass"
+            if r["status_folded"] == "pass" and r["status_phoneme"] == "pass"
+            else "warn"
+        )
+        self.assertEqual(r["status_overall"], expected_overall)
+        # Fold may still help a little (ŋg notation), but must not erase phonemic gaps
+        self.assertGreaterEqual(r["rate_folded"], r["rate_phoneme"])
+        # With phonemic pairs removed from audit_fold, a fold-only 0.95 pass
+        # is no longer required; phoneme gate is the honesty check.
+        if r["rate_folded"] >= r["threshold"] and r["rate_phoneme"] < r.get("threshold_phoneme", r["threshold"]):
+            self.assertEqual(r["status_folded"], "pass")
+            self.assertEqual(r["status_phoneme"], "warn")
+            self.assertEqual(r["status_overall"], "warn")
         # 抽验产物结构
         self.assertIn("mismatches", r)
         for m in r["mismatches"]:
             self.assertIn("word", m)
             self.assertIn("dict_ipa", m)
+
+    def test_audit_fold_excludes_phonemic_contrasts(self):
+        """sw.yaml audit_fold must not equate real phonemic contrasts."""
+        folds = (CFG.get("g2p", {}) or {}).get("audit_fold") or []
+
+        def _norm_side(side):
+            # YAML may load "n g" as a string or as ["n", "g"]
+            if isinstance(side, str):
+                tokens = side.split()
+            else:
+                tokens = []
+                for part in side:
+                    tokens.extend(str(part).split())
+            return " ".join(tokens)
+
+        normalized = {tuple(sorted((_norm_side(a), _norm_side(b)))) for a, b in folds}
+        forbidden = {
+            tuple(sorted(("m b", "m ɓ"))),
+            tuple(sorted(("n d", "n ɗ"))),
+            tuple(sorted(("n ɟ", "ɲ dʒ"))),
+            tuple(sorted(("t h", "θ"))),
+        }
+        self.assertTrue(normalized.isdisjoint(forbidden),
+                        f"phonemic folds still present: {normalized & forbidden}")
+        # notation-only velar fold may remain
+        self.assertIn(tuple(sorted(("n g", "ŋ g"))), normalized)
 
     def test_audit_threshold_from_config(self):
         g = G2P(CFG)
