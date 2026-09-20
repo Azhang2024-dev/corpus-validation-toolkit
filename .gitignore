@@ -12,6 +12,13 @@ venv/
 input/
 output/
 
+# agent 会话计划（工具生成，非交付物）
+.zcode/
+
+# 架构图产物（archify 生成：规格 JSON + 自包含 HTML + 浏览器渲染快照）
+# 可从 docs/语料验证工具集_架构设计_v1.md 与源码重建，故不入库
+docs/*架构总览_v1*
+
 # 系统杂项
 Thumbs.db
 .DS_Store
