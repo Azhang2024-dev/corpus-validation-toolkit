@@ -1,0 +1,111 @@
+# 俄语（ru）。词典为 WikiPron narrow（口径限制已在 SOURCES.md 披露）。
+code: ru
+name: 俄语
+langdetect_code: ru
+script: cyrillic
+function_words:
+- и
+- в
+- во
+- на
+- не
+- что
+- с
+- со
+- по
+- это
+- а
+- как
+- к
+- ко
+- за
+- из
+- от
+- для
+- о
+- об
+- или
+- но
+- же
+- бы
+- ли
+- если
+- когда
+- где
+- кто
+- что
+- почему
+- как
+- я
+- мы
+- вы
+- ты
+- он
+- она
+- они
+- его
+- её
+- их
+- мой
+- наш
+- ваш
+- свой
+- этот
+- тот
+- все
+- весь
+- ещё
+- уже
+- только
+- очень
+- тоже
+- также
+- спасибо
+- здравствуйте
+question_words:
+- что
+- кто
+- где
+- когда
+- почему
+- как
+- сколько
+- какой
+nsw_patterns:
+  纯数字: \b\d+\b
+  时间/版本(数字分隔): \b\d+[:.]\d+\b
+  币种/符号(RUB): ₽|руб|RUB
+  号码(+7等): \+?\d[\d\s-]{7,}
+  全大写缩写: \b[A-Z]{2,}\b
+  网址/邮件: https?://\S+|[\w.+-]+@[\w-]+\.\w+
+sentence_targets:
+  陈述:
+  - 0.7
+  - 0.8
+  短语:
+  - 0.05
+  - 0.15
+  疑问:
+  - 0.1
+  - 0.2
+  感叹:
+  - 0.1
+  - 0.2
+ipa_dict: ipa/ru.txt
+g2p:
+  fallback: epitran
+  epitran_lang: rus-Cyrl
+  patch: {}
+  audit_agreement_threshold: 0.95
+syllable:
+  method: vowel_groups
+  vowel_letters: аеёиоуыэюя
+etymology:
+  prompt_name: 俄语(ru)
+  valid_origins:
+  - slavic_native
+  - old_church_slavonic_loan
+  - greek_loan
+  - english_loan
+  - other_loan
+  - uncertain
