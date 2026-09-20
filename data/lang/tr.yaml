@@ -1,0 +1,119 @@
+# 土耳其语（tr）。vowel_letters 含 ı/ö/ü（土耳其语元音系统）。
+code: tr
+name: 土耳其语
+langdetect_code: tr
+script: latin
+function_words:
+- ve
+- ile
+- için
+- bir
+- bu
+- şu
+- o
+- da
+- de
+- ki
+- mi
+- mu
+- mı
+- ne
+- nasıl
+- neden
+- niçin
+- kim
+- nerede
+- hangi
+- kaç
+- çok
+- daha
+- en
+- az
+- her
+- bazı
+- tüm
+- hiç
+- değil
+- var
+- yok
+- olan
+- olarak
+- gibi
+- kadar
+- sonra
+- önce
+- şimdi
+- ama
+- ancak
+- fakat
+- veya
+- ya
+- eğer
+- çünkü
+- üzere
+- göre
+- ben
+- sen
+- biz
+- siz
+- onlar
+- onun
+- benim
+- senin
+- bizim
+- sizin
+- onların
+- beni
+- seni
+- bizi
+- sizi
+- merhaba
+- teşekkür
+question_words:
+- ne
+- kim
+- nasıl
+- neden
+- niçin
+- nerede
+- nereye
+- hangi
+- kaç
+nsw_patterns:
+  纯数字: \b\d+\b
+  时间/版本(数字分隔): \b\d+[:.]\d+\b
+  币种/符号(₺|TL): ₺|TL
+  号码(+90等): \+?\d[\d\s-]{7,}
+  全大写缩写: \b[A-Z]{2,}\b
+  网址/邮件: https?://\S+|[\w.+-]+@[\w-]+\.\w+
+sentence_targets:
+  陈述:
+  - 0.7
+  - 0.8
+  短语:
+  - 0.05
+  - 0.15
+  疑问:
+  - 0.1
+  - 0.2
+  感叹:
+  - 0.1
+  - 0.2
+ipa_dict: ipa/tr.txt
+g2p:
+  fallback: epitran
+  epitran_lang: tur-Latn
+  patch: {}
+  audit_agreement_threshold: 0.95
+syllable:
+  method: vowel_groups
+  vowel_letters: aeıioöuü
+etymology:
+  prompt_name: 土耳其语(tr)
+  valid_origins:
+  - turkic_native
+  - arabic_loan
+  - french_loan
+  - english_loan
+  - other_loan
+  - uncertain
