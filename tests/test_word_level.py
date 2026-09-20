@@ -142,7 +142,7 @@ class TestEtymologyVerify(unittest.TestCase):
             sents_path.write_text("\n".join(json.dumps(s, ensure_ascii=False) for s in sents) + "\n", encoding="utf-8")
             r = subprocess.run(
                 [PY, str(ROOT / "skills" / "etymology_llm" / "run.py"),
-                 "--sentences", str(sents_path), "--out", str(td), "--verify", "--batch-size", "8"],
+                 "--sentences", str(sents_path), "--lang", "sw", "--out", str(td), "--verify", "--batch-size", "8"],
                 capture_output=True, text=True, encoding="utf-8")
             self.assertEqual(r.returncode, 0, msg=r.stdout + r.stderr)
             dims = json.loads((td / "dims" / "etymology.json").read_text(encoding="utf-8-sig"))
@@ -197,6 +197,7 @@ class TestReportWordDetail(unittest.TestCase):
             out = Path(td) / "run"
             r = subprocess.run(
                 [PY, str(ROOT / "run_pipeline.py"),
+                 "--lang", "sw",
                  "--input", str(ROOT / "tests" / "fixtures" / "sample_sw.txt"),
                  "--out", str(out), "--skip-etymology"],
                 capture_output=True, text=True, encoding="utf-8")
@@ -263,7 +264,8 @@ class TestNswHitsDetail(unittest.TestCase):
         with tempfile.TemporaryDirectory() as td:
             out = Path(td) / "run"
             r = subprocess.run(
-                [PY, str(ROOT / "run_pipeline.py"), "--input", str(ROOT / "tests" / "fixtures" / "sample_sw.txt"),
+                [PY, str(ROOT / "run_pipeline.py"),
+                 "--lang", "sw", "--input", str(ROOT / "tests" / "fixtures" / "sample_sw.txt"),
                  "--out", str(out), "--skip-etymology", "--skip-g2p"],
                 capture_output=True, text=True, encoding="utf-8")
             self.assertEqual(r.returncode, 0, msg=r.stdout + r.stderr)
