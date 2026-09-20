@@ -91,7 +91,7 @@ def main(argv=None):
     ap = argparse.ArgumentParser(description="任意格式语料 → 清洗后 INPUT.txt + 报告")
     ap.add_argument("--input", required=True, help="源文件（dump/txt/tsv/csv）")
     ap.add_argument("--format", default="auto", choices=FORMATS, help="格式；默认自动探测")
-    ap.add_argument("--lang", default="sw")
+    ap.add_argument("--lang", required=True, help="language code or auto")
     ap.add_argument("--out-dir", default="input_clean", help="输出目录")
     ap.add_argument("--text-col", type=int, default=-1, help="tsv/csv 文本列下标（默认最后一列）")
     ap.add_argument("--dry-run", action="store_true", help="只分析出报告，不写 INPUT.txt")
