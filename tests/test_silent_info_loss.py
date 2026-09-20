@@ -65,7 +65,7 @@ class TestGateWarnNotFoldedIntoFail(unittest.TestCase):
             out = Path(td) / "run"
             r = subprocess.run(
                 [PY, str(ROOT / "run_pipeline.py"), "--input", str(ROOT / "tests" / "fixtures" / "sample_sw.txt"),
-                 "--out", str(out), "--skip-etymology", "--skip-g2p"],
+                 "--lang", "sw", "--out", str(out), "--skip-etymology", "--skip-g2p"],
                 capture_output=True, text=True, encoding="utf-8")
             self.assertEqual(r.returncode, 0, msg=r.stdout + r.stderr)
             wb = load_workbook(out / "数据集_全字段.xlsx", read_only=True)
@@ -215,7 +215,7 @@ class TestManifestRecordsRunArgs(unittest.TestCase):
             out = Path(td) / "run"
             r = subprocess.run(
                 [PY, str(ROOT / "run_pipeline.py"), "--input", str(ROOT / "tests" / "fixtures" / "sample_sw.txt"),
-                 "--out", str(out), "--skip-etymology", "--skip-g2p", "--limit", "2"],
+                 "--lang", "sw", "--out", str(out), "--skip-etymology", "--skip-g2p", "--limit", "2"],
                 capture_output=True, text=True, encoding="utf-8")
             self.assertEqual(r.returncode, 0, msg=r.stdout + r.stderr)
             m = json.loads((out / "manifest.json").read_text(encoding="utf-8-sig"))
