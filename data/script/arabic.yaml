@@ -1,0 +1,30 @@
+# 阿拉伯字母族（ar / ur）。ZWNJ/ZWJ 保留（正字法），token 允许词内零宽连接。
+name: 阿拉伯字母
+direction: rtl
+script_blocks:
+- Arabic
+- Arabic Supplement
+- Arabic Extended-A
+- Arabic Extended-B
+- Arabic Presentation Forms-A
+- Arabic Presentation Forms-B
+token_pattern: (?:(?=\p{scx=Arab})[\p{L}\p{M}])(?:[\p{L}\p{M}]|[‌‍])*
+core_pattern: '[\p{scx=Arab}\p{Nd}]'
+letter_pattern: (?=\p{scx=Arab})\p{L}
+word_pattern: ^[\p{L}\p{M}]+$
+sentence_enders: .!?…؟۔
+enders_greedy: ''
+q_marks: ?؟
+ex_marks: '!'
+quote_pairs:
+- '""'
+- ''''''
+- «»
+- “”
+keep_chars:
+- ‌
+- ‍
+phoneme_rules:
+  mode: generic
+length:
+  char_mode: graphemes
