@@ -1,0 +1,125 @@
+# 巴西葡萄牙语（pt）。词典取 ipa-dict pt_BR（巴葡，与语料来源一致）。
+code: pt
+name: 巴西葡萄牙语
+langdetect_code: pt
+script: latin
+function_words:
+- de
+- do
+- da
+- dos
+- das
+- a
+- o
+- os
+- as
+- um
+- uma
+- uns
+- umas
+- e
+- ou
+- mas
+- que
+- quem
+- qual
+- como
+- quando
+- onde
+- porque
+- se
+- não
+- nem
+- me
+- te
+- lhe
+- nos
+- vos
+- meu
+- minha
+- seu
+- sua
+- este
+- esta
+- esse
+- essa
+- aquele
+- aquela
+- é
+- são
+- era
+- foi
+- ser
+- estar
+- está
+- estão
+- há
+- tem
+- têm
+- para
+- por
+- com
+- sem
+- sobre
+- entre
+- até
+- desde
+- em
+- muito
+- mais
+- menos
+- também
+- já
+- ainda
+- sempre
+- nunca
+- aqui
+- ali
+- olá
+- obrigado
+question_words:
+- que
+- quem
+- qual
+- quais
+- onde
+- quando
+- como
+- quanto
+nsw_patterns:
+  纯数字: \b\d+\b
+  时间/版本(数字分隔): \b\d+[:.]\d+\b
+  币种/符号(R\$|\$): R\$|\$
+  号码(+55等): \+?\d[\d\s-]{7,}
+  全大写缩写: \b[A-Z]{2,}\b
+  网址/邮件: https?://\S+|[\w.+-]+@[\w-]+\.\w+
+sentence_targets:
+  陈述:
+  - 0.7
+  - 0.8
+  短语:
+  - 0.05
+  - 0.15
+  疑问:
+  - 0.1
+  - 0.2
+  感叹:
+  - 0.1
+  - 0.2
+ipa_dict: ipa/pt.txt
+g2p:
+  fallback: epitran
+  epitran_lang: por-Latn
+  patch: {}
+  audit_agreement_threshold: 0.95
+syllable:
+  method: vowel_groups
+  vowel_letters: aeiouáéíóúâêôãõàü
+etymology:
+  prompt_name: 巴西葡萄牙语(pt)
+  valid_origins:
+  - latin_native
+  - tupi_loan
+  - english_loan
+  - other_loan
+  - uncertain
