@@ -1,0 +1,24 @@
+# 古吉拉特字母族（gu）。
+name: 古吉拉特字母
+direction: ltr
+script_blocks:
+- Gujarati
+token_pattern: (?:(?=\p{scx=Gujr})[\p{L}\p{M}])(?:[\p{L}\p{M}]|[‌‍])*
+core_pattern: '[\p{scx=Gujr}\p{Nd}]'
+letter_pattern: (?=\p{scx=Gujr})\p{L}
+word_pattern: ^[\p{L}\p{M}]+$
+sentence_enders: .!?…।
+enders_greedy: ।
+q_marks: '?'
+ex_marks: '!'
+quote_pairs:
+- '""'
+- ''''''
+- “”
+keep_chars:
+- ‌
+- ‍
+phoneme_rules:
+  mode: generic
+length:
+  char_mode: graphemes
