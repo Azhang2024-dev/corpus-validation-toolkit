@@ -1,0 +1,112 @@
+# 菲律宾语（fil）—— langdetect 用 tl（塔加洛）profile；词典用 WikiPron tgl（口径已披露）。
+code: fil
+name: 菲律宾语
+langdetect_code: tl
+langdetect_aliases:
+- tl
+- fil
+script: latin
+function_words:
+- ang
+- ng
+- sa
+- na
+- mga
+- ay
+- at
+- o
+- hindi
+- wala
+- may
+- mayroon
+- ito
+- iyan
+- iyon
+- si
+- ni
+- kay
+- para
+- upang
+- kung
+- kapag
+- dahil
+- sapagkat
+- pero
+- ngunit
+- din
+- rin
+- lang
+- naman
+- pa
+- ba
+- po
+- ko
+- mo
+- niya
+- natin
+- namin
+- ninyo
+- nila
+- akin
+- iyo
+- kanya
+- amin
+- atin
+- inyo
+- kanila
+- isa
+- lahat
+- bawat
+- ilang
+- marami
+- kaunti
+- salamat
+- kumusta
+question_words:
+- ano
+- sino
+- saan
+- kailan
+- paano
+- bakit
+- ilan
+- alin
+- nasaan
+nsw_patterns:
+  纯数字: \b\d+\b
+  时间/版本(数字分隔): \b\d+[:.]\d+\b
+  币种/符号(PHP|₱): PHP|₱
+  号码(+63等): \+?\d[\d\s-]{7,}
+  全大写缩写: \b[A-Z]{2,}\b
+  网址/邮件: https?://\S+|[\w.+-]+@[\w-]+\.\w+
+sentence_targets:
+  陈述:
+  - 0.7
+  - 0.8
+  短语:
+  - 0.05
+  - 0.15
+  疑问:
+  - 0.1
+  - 0.2
+  感叹:
+  - 0.1
+  - 0.2
+ipa_dict: ipa/fil.txt
+g2p:
+  fallback: epitran
+  epitran_lang: tgl-Latn
+  patch: {}
+  audit_agreement_threshold: 0.95
+syllable:
+  method: vowel_groups
+  vowel_letters: aeiou
+etymology:
+  prompt_name: 菲律宾语/塔加洛语(fil)
+  valid_origins:
+  - austronesian_native
+  - spanish_loan
+  - english_loan
+  - malay_loan
+  - other_loan
+  - uncertain
