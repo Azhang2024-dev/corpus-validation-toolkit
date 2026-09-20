@@ -712,7 +712,7 @@ def main(argv=None):
     ap.add_argument("--out", required=True, help="output 运行目录")
     ap.add_argument("--meta", default=None, help="INPUT.meta.json 路径")
     ap.add_argument("--run-id", default=None)
-    ap.add_argument("--lang", default="sw")
+    ap.add_argument("--lang", required=True, help="language code or auto")
     ap.add_argument("--input", default="")
     ap.add_argument("--params", default=None,
                     help="本次运行的实际参数（JSON 字符串，如 run_pipeline 透传）；记入 manifest.params")
