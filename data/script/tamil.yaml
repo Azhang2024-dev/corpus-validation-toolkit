@@ -1,0 +1,25 @@
+# 泰米尔字母族（ta）。
+name: 泰米尔字母
+direction: ltr
+script_blocks:
+- Tamil
+- Tamil Supplement
+token_pattern: (?:(?=\p{scx=Taml})[\p{L}\p{M}])(?:[\p{L}\p{M}]|[‌‍])*
+core_pattern: '[\p{scx=Taml}\p{Nd}]'
+letter_pattern: (?=\p{scx=Taml})\p{L}
+word_pattern: ^[\p{L}\p{M}]+$
+sentence_enders: .!?…।
+enders_greedy: ।
+q_marks: '?'
+ex_marks: '!'
+quote_pairs:
+- '""'
+- ''''''
+- “”
+keep_chars:
+- ‌
+- ‍
+phoneme_rules:
+  mode: generic
+length:
+  char_mode: graphemes
