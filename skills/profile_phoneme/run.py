@@ -113,7 +113,7 @@ def main(argv=None):
         "longtail_bi": dims["n_longtail_bi"], "letters_total": letters["total"],
         "g2p_miss": n_miss,
         "space": ph_report["n_space"], "missing": ph_report["n_missing"], "out_of_space": ph_report["n_out_of_space"],
-        "g2p_audit": {"n": au.get("n_sample"), "rate_folded": au.get("rate_folded"), "status": au.get("status")},
+        "g2p_audit": {"n": au.get("n_sample"), "rate_folded": au.get("rate_folded"), "rate_phoneme": au.get("rate_phoneme"), "status_folded": au.get("status_folded"), "status_phoneme": au.get("status_phoneme"), "status_overall": au.get("status_overall", au.get("status")), "status": au.get("status_overall", au.get("status"))},
     }, ensure_ascii=False))
     return 0
 
