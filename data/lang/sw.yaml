@@ -202,21 +202,18 @@ g2p:
   epitran_lang: swa-Latn
   patch: {}
   audit_agreement_threshold: 0.95
+  # audit_fold: notation-only equivalences. Do NOT fold real phonemic contrasts
+  # (implosives mb/ɓ, nd/ɗ, nɟ/ɲdʒ, th/θ) — those must surface in rate_phoneme.
+  # Kept: n g ↔ ŋ g (velar place notation) and identity pairs that are no-ops
+  # for documentation of historically considered, then rejected, folds.
   audit_fold:
   - - n g
     - ŋ g
-  - - m b
-    - m ɓ
-  - - n d
-    - n ɗ
-  - - m v
-    - m v
-  - - n z
-    - n z
-  - - n ɟ
-    - ɲ dʒ
-  - - t h
-    - θ
+  # removed (phonemic contrasts, not notation):
+  # - [m b, m ɓ]   implosive vs plain
+  # - [n d, n ɗ]   implosive vs plain
+  # - [n ɟ, ɲ dʒ]  palatal stop vs nasal+affricate
+  # - [t h, θ]     aspirated/cluster vs dental fricative
 syllable:
   method: vowel_groups
 etymology:
